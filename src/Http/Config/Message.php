@@ -63,6 +63,13 @@ trait Message
     }
 
     /**
+     * @param $name
+     * @param $value
+     * @return mixed|self
+     */
+    protected abstract function with($name, $value);
+
+    /**
      * @param StreamInterface $body
      * @return mixed|self
      */

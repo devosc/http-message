@@ -6,9 +6,13 @@
 namespace Valar\Http;
 
 use Mvc5\Http\Uri as HttpUri;
-use Psr\Http\Message\UriInterface as PsrInterface;
+use Psr\Http\Message\UriInterface;
 
-interface Uri
-    extends HttpUri, PsrInterface
+class Uri
+    implements HttpUri, UriInterface
 {
+    /**
+     *
+     */
+    use Config\Uri;
 }

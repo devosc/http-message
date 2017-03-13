@@ -11,7 +11,6 @@ use Mvc5\Service\Service;
 use Symfony\Component\HttpFoundation\ApacheRequest as HttpRequest;
 use Valar\Http\Config\Request as _Request;
 
-
 trait Request
 {
     /**

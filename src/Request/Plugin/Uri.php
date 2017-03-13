@@ -7,7 +7,7 @@ namespace Valar\Plugin;
 
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
-use Valar\Http\Uri\Config as HttpUri;
+use Valar\Http\Uri as HttpUri;
 
 class Uri
     extends Shared

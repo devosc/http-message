@@ -32,13 +32,6 @@ trait Response
     }
 
     /**
-     * @param $name
-     * @param $value
-     * @return mixed|self
-     */
-    protected abstract function with($name, $value);
-
-    /**
      * @param $code
      * @param string $reasonPhrase
      * @return mixed|self
