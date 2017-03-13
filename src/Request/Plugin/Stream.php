@@ -24,7 +24,7 @@ class Stream
     function __invoke()
     {
         return function() {
-            /** @var \Request\Config $this */
+            /** @var \Valar\Request\Config $this */
             return $this->http->getContent(true);
         };
     }
