@@ -7,8 +7,6 @@ namespace Valar\Request\Config;
 
 use Mvc5\Arg;
 use Mvc5\Request\Config\Request as _Config;
-use Mvc5\Service\Service;
-use Symfony\Component\HttpFoundation\ApacheRequest as HttpRequest;
 use Valar\Http\Config\Request as _Request;
 
 trait Request
@@ -18,27 +16,6 @@ trait Request
      */
     use _Config;
     use _Request;
-
-    /**
-     * @var HttpRequest
-     */
-    protected $http;
-
-    /**
-     * @var Service
-     */
-    protected $service;
-
-    /**
-     * @param array|\ArrayAccess $config
-     * @param Service $service
-     */
-    function __construct($config, Service $service)
-    {
-        $this->config  = $config;
-        $this->http    = new HttpRequest($_GET, $_POST, [], $_COOKIE, $_FILES, $_SERVER);
-        $this->service = $service;
-    }
 
     /**
      * @param $name

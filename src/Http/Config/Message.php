@@ -93,7 +93,9 @@ trait Message
 
         is_string($header) && $header = [$header];
 
-        return $this->withHeader($name, $header[] = $value);
+        $header[] = $value;
+
+        return $this->withHeader($name, $header);
     }
 
     /**
