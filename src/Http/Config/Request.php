@@ -29,7 +29,7 @@ trait Request
      */
     function getRequestTarget()
     {
-        return $this[Arg::TARGET];
+        return $this['target'];
     }
 
     /**
@@ -55,7 +55,7 @@ trait Request
      */
     function withRequestTarget($requestTarget)
     {
-        return $this->with(Arg::TARGET, $requestTarget);
+        return $this->with('target', $requestTarget);
     }
 
     /**

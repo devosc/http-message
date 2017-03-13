@@ -48,7 +48,7 @@ trait Request
      */
     function getAttribute($name, $default = null)
     {
-        return $this[Arg::ATTRIBUTES][$name] ?? $default;
+        return $this['attributes'][$name] ?? $default;
     }
 
     /**
@@ -56,7 +56,7 @@ trait Request
      */
     function getAttributes()
     {
-        return $this[Arg::ATTRIBUTES] ?? [];
+        return $this['attributes'] ?? [];
     }
 
     /**
@@ -109,7 +109,7 @@ trait Request
         $attributes = $this->getAttributes();
         $attributes[$name] = $value;
 
-        return $this->with(Arg::ATTRIBUTES, $attributes);
+        return $this->with('attributes', $attributes);
     }
 
     /**
@@ -130,7 +130,7 @@ trait Request
         $attributes = $this->getAttributes();
         unset($attributes[$name]);
 
-        return $this->with(Arg::ATTRIBUTES, $attributes);
+        return $this->with('attributes', $attributes);
     }
 
     /**
