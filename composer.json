@@ -1,0 +1,24 @@
+{
+  "name": "devosc/valar",
+  "description": "Mvc5 PSR-7 HTTP Messages",
+  "keywords": ["http", "mvc5", "psr-7", "psr", "request", "response"],
+  "homepage": "https://github.com/devosc/valar",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Gregory Baboolal",
+      "email": "devosc@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^7.0",
+    "mvc5/mvc5": "6.*",
+    "psr/http-message": "~1.0",
+    "symfony/http-foundation": "3.1.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Valar\\": "./src"
+    }
+  }
+}
