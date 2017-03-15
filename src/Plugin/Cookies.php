@@ -25,8 +25,8 @@ class Cookies
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
-            return $this->service->plugin('cookie\container');
+            /** @var \Valar\ServerRequest $this */
+            return $this->service->plugin('cookie');
         };
     }
 }

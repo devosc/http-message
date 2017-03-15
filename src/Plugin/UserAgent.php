@@ -25,7 +25,7 @@ class UserAgent
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
+            /** @var \Valar\ServerRequest $this */
             return $this->http->server->get('HTTP_USER_AGENT');
         };
     }

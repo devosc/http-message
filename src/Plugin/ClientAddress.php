@@ -25,7 +25,7 @@ class ClientAddress
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
+            /** @var \Valar\ServerRequest $this */
             return $this->http->getClientIp();
         };
     }

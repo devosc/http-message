@@ -25,7 +25,7 @@ class Version
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
+            /** @var \Valar\ServerRequest $this */
             return substr($this->http->server->get('SERVER_PROTOCOL'), strlen('HTTP/'));
         };
     }

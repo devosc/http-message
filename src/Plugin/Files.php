@@ -26,7 +26,6 @@ class Files
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
             return ServerRequestFactory::normalizeFiles($_FILES);
         };
     }

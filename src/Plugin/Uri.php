@@ -26,7 +26,7 @@ class Uri
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\ServerRequest $this */
+            /** @var \Valar\ServerRequest $this */
             return new HttpUri([
                 'scheme' => $this->http->getScheme(),
                 'host'   => $this->http->getHost(),

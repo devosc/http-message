@@ -28,7 +28,7 @@ class Headers
         return function() {
             $headers = new Config;
 
-            /** @var \Valar\Request\ServerRequest $this */
+            /** @var \Valar\ServerRequest $this */
             foreach($this->http->headers->all() as $key => $val) {
                 $headers[implode('-', array_map('ucfirst', explode('-', $key)))] = implode(', ', $val);
             }
