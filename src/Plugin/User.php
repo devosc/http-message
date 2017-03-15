@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class ContentType
+class User
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'content_type')
+    function __construct($name = 'user')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class ContentType
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->getContentType();
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->service->plugin('user');
         };
     }
 }

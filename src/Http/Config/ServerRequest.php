@@ -3,19 +3,16 @@
  *
  */
 
-namespace Valar\Request\Config;
+namespace Valar\Http\Config;
 
 use Mvc5\Arg;
-use Mvc5\Request\Config\Request as _Config;
-use Valar\Http\Config\Request as _Request;
 
-trait Request
+trait ServerRequest
 {
     /**
      *
      */
-    use _Config;
-    use _Request;
+    use Request;
 
     /**
      * @param $name
@@ -28,11 +25,11 @@ trait Request
     }
 
     /**
-     * @return array
+     * @return array|mixed
      */
     function getAttributes()
     {
-        return $this['attributes'] ?? [];
+        return $this['attributes'];
     }
 
     /**
@@ -82,10 +79,7 @@ trait Request
      */
     function withAttribute($name, $value)
     {
-        $attributes = $this->getAttributes();
-        $attributes[$name] = $value;
-
-        return $this->with('attributes', $attributes);
+        return $this->with('attributes', $this->getAttributes()->with($name, $value));
     }
 
     /**
@@ -103,10 +97,7 @@ trait Request
      */
     function withoutAttribute($name)
     {
-        $attributes = $this->getAttributes();
-        unset($attributes[$name]);
-
-        return $this->with('attributes', $attributes);
+        return $this->with('attributes', $this->getAttributes()->without($name));
     }
 
     /**

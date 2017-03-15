@@ -66,13 +66,14 @@ trait Request
     function withUri(UriInterface $uri, $preserveHost = false)
     {
         $host = $uri->getHost();
+        $name = ucfirst(Arg::HOST);
 
-        if (!$host || ($preserveHost && $this->hasHeader(ucfirst(Arg::HOST)))) {
+        if (!$host || ($preserveHost && $this->hasHeader($name))) {
             return $this->with(Arg::URI, $uri);
         }
 
         $port = $uri->getPort();
 
-        return $this->withHeader(ucfirst(Arg::HOST), $host . ($port ? ':' . $port : ''));
+        return $this->withHeader($name, $host . ($port ? ':' . $port : ''));
     }
 }

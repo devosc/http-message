@@ -3,10 +3,10 @@
  *
  */
 
-namespace Valar\Response;
+namespace Valar;
 
-class Redirect
-    extends Config
+class RedirectResponse
+    extends Response
 {
     /**
      * @param $url

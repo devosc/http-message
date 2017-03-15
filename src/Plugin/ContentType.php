@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Files
+class ContentType
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'files')
+    function __construct($name = 'content_type')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class Files
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->files->all();
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->http->getContentType();
         };
     }
 }

@@ -6,6 +6,7 @@
 use Mvc5\Plugin\NullValue;
 use Valar\Plugin\Accept;
 use Valar\Plugin\Args;
+use Valar\Plugin\Attributes;
 use Valar\Plugin\Body;
 use Valar\Plugin\ClientAddress;
 use Valar\Plugin\ContentType;
@@ -25,6 +26,7 @@ use Valar\Plugin\Version;
 return [
     'accept'         => new Accept,
     'args'           => new Args,
+    'attributes'     => new Attributes,
     'body'           => new Body,
     'client_address' => new ClientAddress,
     'content_type'   => new ContentType,

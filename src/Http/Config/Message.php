@@ -85,7 +85,7 @@ trait Message
      */
     function withAddedHeader($name, $value)
     {
-        $header = $this[Arg::HEADERS][$name];
+        $header = $this[Arg::HEADERS][$name] ?? null;
 
         if (null === $header) {
             return $this->withHeader($name, $value);
@@ -105,7 +105,11 @@ trait Message
      */
     function withHeader($name, $value)
     {
-        return $this->with(Arg::HEADERS, $this->getHeaders()->with($name, $value));
+        $headers = $this->getHeaders();
+
+        is_array($headers) ? $headers[$name] = $value : $headers = $headers->with($name, $value);
+
+        return $this->with(Arg::HEADERS, $headers);
     }
 
     /**
@@ -114,7 +118,15 @@ trait Message
      */
     function withoutHeader($name)
     {
-        return $this->with(Arg::HEADERS, $this->getHeaders()->without($name));
+        $headers = $this->getHeaders();
+
+        if (!is_array($headers)) {
+            $headers = $headers->without($name);
+        } else {
+            unset($headers[$name]);
+        }
+
+        return $this->with(Arg::HEADERS, $headers);
     }
 
     /**

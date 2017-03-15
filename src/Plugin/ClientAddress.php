@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Version
+class ClientAddress
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'version')
+    function __construct($name = 'client_address')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class Version
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return substr($this->http->server->get('SERVER_PROTOCOL'), strlen('HTTP/'));
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->http->getClientIp();
         };
     }
 }

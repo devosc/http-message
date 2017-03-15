@@ -7,14 +7,15 @@ namespace Valar\Plugin;
 
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+use Zend\Diactoros\ServerRequestFactory;
 
-class Data
+class Files
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'data')
+    function __construct($name = 'files')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +26,8 @@ class Data
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->request->all();
+            /** @var \Valar\Request\ServerRequest $this */
+            return ServerRequestFactory::normalizeFiles($_FILES);
         };
     }
 }

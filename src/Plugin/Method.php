@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Server
+class Method
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'server')
+    function __construct($name = 'method')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class Server
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->server->all();
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->http->getMethod();
         };
     }
 }

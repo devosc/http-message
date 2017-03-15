@@ -5,6 +5,7 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Http\Headers\Config;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
@@ -25,8 +26,14 @@ class Headers
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->headers->all();
+            $headers = new Config;
+
+            /** @var \Valar\Request\ServerRequest $this */
+            foreach($this->http->headers->all() as $key => $val) {
+                $headers[implode('-', array_map('ucfirst', explode('-', $key)))] = implode(', ', $val);
+            }
+
+            return $headers;
         };
     }
 }

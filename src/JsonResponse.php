@@ -3,10 +3,10 @@
  *
  */
 
-namespace Valar\Response;
+namespace Valar;
 
-class Json
-    extends Config
+class JsonResponse
+    extends Response
 {
     /**
      * @param $data

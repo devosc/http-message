@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class UserAgent
+class Accept
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'user_agent')
+    function __construct($name = 'accept')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class UserAgent
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->http->server->get('HTTP_USER_AGENT');
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->http->getAcceptableContentTypes();
         };
     }
 }

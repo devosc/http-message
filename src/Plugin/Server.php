@@ -8,13 +8,13 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Cookies
+class Server
     extends Shared
 {
     /**
      * @param $name
      */
-    function __construct($name = 'cookies')
+    function __construct($name = 'server')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -25,8 +25,8 @@ class Cookies
     function __invoke()
     {
         return function() {
-            /** @var \Valar\Request\Config $this */
-            return $this->service->plugin('cookie');
+            /** @var \Valar\Request\ServerRequest $this */
+            return $this->http->server->all();
         };
     }
 }
