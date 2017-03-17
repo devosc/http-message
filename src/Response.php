@@ -5,16 +5,12 @@
 
 namespace Valar;
 
-use Mvc5\Response\Config\Response as _Config;
-use Mvc5\Response\Response as Mvc5Response;
-use Psr\Http\Message\ResponseInterface;
-
 class Response
-    implements Mvc5Response, ResponseInterface
+    extends Http\Response
+    implements \Mvc5\Response\Response
 {
     /**
      *
      */
-    use _Config;
-    use Http\Config\Response;
+    use \Mvc5\Response\Config\Response;
 }

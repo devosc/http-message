@@ -5,7 +5,7 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Http\Headers\Config;
+use Valar\Http\Headers as HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
@@ -26,14 +26,14 @@ class Headers
     function __invoke()
     {
         return function() {
-            $headers = new Config;
-
             /** @var \Valar\ServerRequest $this */
-            foreach($this->http->headers->all() as $key => $val) {
-                $headers[implode('-', array_map('ucfirst', explode('-', $key)))] = implode(', ', $val);
+            $headers = $this->http->headers->all();
+
+            if (!isset($headers['host']) && ($uri = $this['uri'] ?? null) && ($host = $uri['host'] ?? null)) {
+                $headers['host'] = [$host . (isset($uri['port']) ? ':' . $uri['port'] : '')];
             }
 
-            return $headers;
+            return new HttpHeaders($headers);
         };
     }
 }

@@ -2,11 +2,11 @@
 /**
  *
  */
-include __DIR__ . '/src/Http/Config/Message.php';
 include __DIR__ . '/src/Http/Config/Request.php';
 include __DIR__ . '/src/Http/Config/Response.php';
 include __DIR__ . '/src/Http/Config/ServerRequest.php';
 include __DIR__ . '/src/Http/Config/Uri.php';
+include __DIR__ . '/src/Http/Headers.php';
 include __DIR__ . '/src/Http/Request.php';
 include __DIR__ . '/src/Http/Response.php';
 include __DIR__ . '/src/Http/ServerRequest.php';
@@ -26,6 +26,7 @@ include __DIR__ . '/src/Plugin/Server.php';
 include __DIR__ . '/src/Plugin/Session.php';
 include __DIR__ . '/src/Plugin/ServerRequest.php';
 include __DIR__ . '/src/Plugin/Stream.php';
+include __DIR__ . '/src/Plugin/RequestTarget.php';
 include __DIR__ . '/src/Plugin/Uri.php';
 include __DIR__ . '/src/Plugin/User.php';
 include __DIR__ . '/src/Plugin/UserAgent.php';

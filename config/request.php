@@ -18,6 +18,7 @@ use Valar\Plugin\Method;
 use Valar\Plugin\Server;
 use Valar\Plugin\Session;
 use Valar\Plugin\Stream;
+use Valar\Plugin\RequestTarget;
 use Valar\Plugin\Uri;
 use Valar\Plugin\User;
 use Valar\Plugin\UserAgent;
@@ -45,6 +46,7 @@ return [
     'server'         => new Server,
     'session'        => new Session,
     'stream'         => new Stream,
+    'target'         => new RequestTarget,
     'uri'            => new Uri,
     'user'           => new User,
     'user_agent'     => new UserAgent,
