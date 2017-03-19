@@ -6,6 +6,7 @@
 namespace Valar\Http;
 
 use Mvc5\Arg;
+use Valar\Stream\JsonStream;
 
 class JsonResponse
     extends Response
