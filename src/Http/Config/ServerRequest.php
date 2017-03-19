@@ -21,7 +21,7 @@ trait ServerRequest
      */
     function getAttribute($name, $default = null)
     {
-        return $this['attributes'][$name] ?? $default;
+        return $this[Arg::ATTRIBUTES][$name] ?? $default;
     }
 
     /**
@@ -29,7 +29,7 @@ trait ServerRequest
      */
     function getAttributes()
     {
-        return $this['attributes'];
+        return $this[Arg::ATTRIBUTES];
     }
 
     /**
@@ -79,7 +79,7 @@ trait ServerRequest
      */
     function withAttribute($name, $value)
     {
-        return $this->with('attributes', $this->getAttributes()->with($name, $value));
+        return $this->with(Arg::ATTRIBUTES, $this->getAttributes()->with($name, $value));
     }
 
     /**
@@ -97,7 +97,7 @@ trait ServerRequest
      */
     function withoutAttribute($name)
     {
-        return $this->with('attributes', $this->getAttributes()->without($name));
+        return $this->with(Arg::ATTRIBUTES, $this->getAttributes()->without($name));
     }
 
     /**

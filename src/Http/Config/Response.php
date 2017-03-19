@@ -6,7 +6,6 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Arg;
-use Mvc5\Http\Headers\Config as Headers;
 use Mvc5\Http\Config\Response as HttpResponse;
 use Psr\Http\Message\StreamInterface;
 
@@ -16,17 +15,6 @@ trait Response
      *
      */
     use HttpResponse;
-
-    /**
-     * @param array $config
-     */
-    function __construct($config = [])
-    {
-        !isset($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = new Headers;
-
-        $this->config = $config;
-    }
 
     /**
      * @return mixed
@@ -160,9 +148,7 @@ trait Response
     function withStatus($code, $reasonPhrase = '')
     {
         $new = $this->with(Arg::STATUS, $code);
-
         $new[Arg::REASON] = $reasonPhrase;
-
         return $new;
     }
 }

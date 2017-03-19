@@ -9,7 +9,6 @@ use Mvc5\Arg;
 use Mvc5\Http\Config\Request as HttpRequest;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
-use Valar\Http\Headers as HttpHeaders;
 
 trait Request
 {
@@ -17,23 +16,6 @@ trait Request
      *
      */
     use HttpRequest;
-
-    /**
-     * @param array $config
-     */
-    function __construct($config = [])
-    {
-        !isset($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = new HttpHeaders;
-
-        $host = $config['headers']['host'] ?? null;
-
-        if (!$host && ($uri = $config['uri'] ?? null) && ($host = $uri['host'] ?? null)) {
-            $config['headers']['host'] = [$host . (isset($uri['port']) ? ':' . $uri['port'] : '')];
-        }
-
-        $this->config = $config;
-    }
 
     /**
      * @return mixed
@@ -90,8 +72,10 @@ trait Request
      */
     function getRequestTarget()
     {
-        return $this['target'] ??
-            ($uri = $this->getUri()) && $uri->getPath() ? $uri->getPath() . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '/';
+        return $this[Arg::TARGET] ?? (
+            ($uri = $this->getUri()) ?
+                ($uri->getPath() ? $uri->getPath() . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '') : '/'
+        );
     }
 
     /**
@@ -183,7 +167,7 @@ trait Request
      */
     function withRequestTarget($requestTarget)
     {
-        return $this->with('target', $requestTarget);
+        return $this->with(Arg::TARGET, $requestTarget);
     }
 
     /**

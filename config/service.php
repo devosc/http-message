@@ -13,7 +13,7 @@ use Zend\Diactoros\Stream;
 return [
     'http\request' => [Valar\Http\Request::class, new Args([
         'body'    => new Stream('php://temp', 'wb+'),
-        'headers' => new Valar\Http\Headers,
+        'headers' => new Mvc5\Http\Headers\Config,
         'method'  => 'POST',
         //'target'  => '/foo?bar=baz',
         'uri'     => new Plugin('http\uri', [[
@@ -25,11 +25,14 @@ return [
         'version' => '1.1'
     ])],
     'http\uri' => Valar\Http\Uri::class,
-    'http-foundation\request' => new Plugin(ApacheRequest::class, [new GlobalVar('_GET'), new GlobalVar('_POST'), [], [], [], new GlobalVar('_SERVER')]),
+    'http-foundation\request' => new Plugin(
+        ApacheRequest::class, [new GlobalVar('_GET'), new GlobalVar('_POST'), [], [], [], new GlobalVar('_SERVER')]
+    ),
     'request' => new ServerRequest(include __DIR__ . '/request.php', new Plugin('http-foundation\request')),
-    //'response' => [Valar\Response::class, new Plugin('stream', ['php://memory', 'wb+'])],
     'response' => Valar\Response::class,
+    //'response' => [Valar\Response::class, new Plugin(Stream::class, ['php://memory', 'wb+'])],
     'response\json' => Valar\JsonResponse::class,
+    //'response\json' => Valar\Http\JsonResponse::class,
     'response\redirect' => Valar\RedirectResponse::class,
-    'stream' => Stream::class
+    //'response\redirect' => Valar\Http\RedirectResponse::class,
 ];

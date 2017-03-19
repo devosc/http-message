@@ -82,10 +82,7 @@ trait Uri
      */
     function getUserInfo()
     {
-        $password = $this->password();
-        $user = $this->user();
-
-        return !$user ? '' : $user . ($password ? ':' . $password : '');
+        return !$this->user() ? '' : $this->user() . ($this->password() ? ':' . $this->password() : '');
     }
 
     /**
