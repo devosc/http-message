@@ -18,7 +18,7 @@ trait Request
     use HttpRequest;
 
     /**
-     * @return mixed
+     * @return StreamInterface|mixed
      */
     function getBody()
     {
@@ -44,7 +44,7 @@ trait Request
     }
 
     /**
-     * @return mixed
+     * @return array|\ArrayAccess|mixed
      */
     function getHeaders()
     {
@@ -60,7 +60,7 @@ trait Request
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     function getProtocolVersion()
     {
