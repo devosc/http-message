@@ -17,7 +17,7 @@ trait Response
     use HttpResponse;
 
     /**
-     * @return mixed
+     * @return mixed|StreamInterface
      */
     function getBody()
     {
@@ -43,7 +43,7 @@ trait Response
     }
 
     /**
-     * @return mixed
+     * @return array|\ArrayAccess|mixed
      */
     function getHeaders()
     {
@@ -51,7 +51,7 @@ trait Response
     }
 
     /**
-     * @return string|null
+     * @return string
      */
     function getProtocolVersion()
     {
@@ -59,7 +59,7 @@ trait Response
     }
 
     /**
-     * @return null|string
+     * @return string
      */
     function getReasonPhrase()
     {
@@ -67,7 +67,7 @@ trait Response
     }
 
     /**
-     * @return null|string
+     * @return int
      */
     function getStatusCode()
     {

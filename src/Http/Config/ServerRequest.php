@@ -29,7 +29,7 @@ trait ServerRequest
      */
     function getAttributes()
     {
-        return $this[Arg::ATTRIBUTES];
+        return $this[Arg::ATTRIBUTES] ?? [];
     }
 
     /**
@@ -37,7 +37,7 @@ trait ServerRequest
      */
     function getCookieParams()
     {
-        return $this[Arg::COOKIES];
+        return $this[Arg::COOKIES] ?? [];
     }
 
     /**
@@ -53,7 +53,7 @@ trait ServerRequest
      */
     function getQueryParams()
     {
-        return $this[Arg::ARGS];
+        return $this[Arg::ARGS] ?? [];
     }
 
     /**
@@ -61,7 +61,7 @@ trait ServerRequest
      */
     function getServerParams()
     {
-        return $this[Arg::SERVER];
+        return $this[Arg::SERVER] ?? [];
     }
 
     /**
@@ -69,7 +69,7 @@ trait ServerRequest
      */
     function getUploadedFiles()
     {
-        return $this[Arg::FILES];
+        return $this[Arg::FILES] ?? [];
     }
 
     /**

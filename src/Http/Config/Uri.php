@@ -25,7 +25,7 @@ trait Uri
         $userInfo = $this->getUserInfo();
 
         return !$host ? '' : (
-            !$userInfo ? $host : $userInfo . '@' . $host . ('80' !== $port && '443' !== $port ? ':' . $port : '')
+            !$userInfo ? $host : $userInfo . '@' . $host . ($port && 80 !== $port && 443 !== $port ? ':' . $port : '')
         );
     }
 
@@ -54,7 +54,7 @@ trait Uri
     }
 
     /**
-     * @return string
+     * @return null|int
      */
     function getPort()
     {
