@@ -14,8 +14,9 @@ return [
         ApacheRequest::class, [new GlobalVar('_GET'), new GlobalVar('_POST'), [], [], [], new GlobalVar('_SERVER')]
     ),
     'request' => new ServerRequest(include __DIR__ . '/request.php', new Plugin('http-foundation\request')),
+    //'request' => Valar\Http\ServerRequest::class,
     'response' => Valar\Response::class,
-    //'response' => [Valar\Response::class, new Plugin(Stream::class, ['php://memory', 'wb+'])],
+    //'response' => Valar\Http\Response::class,
     'response\json' => Valar\JsonResponse::class,
     //'response\json' => Valar\Http\JsonResponse::class,
     'response\redirect' => Valar\RedirectResponse::class,
