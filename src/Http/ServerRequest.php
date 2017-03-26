@@ -38,7 +38,7 @@ class ServerRequest
         !isset($config[Arg::DATA]) && $config[Arg::DATA] = $_POST;
         !isset($config[Arg::FILES]) && $config[Arg::FILES] = Factory::normalizeFiles($_FILES);
         !isset($config[Arg::HEADERS]) && $config[Arg::HEADERS] = new HttpHeaders(Factory::marshalHeaders($server));
-        !isset($config[Arg::METHOD]) && $config[Arg::METHOD] = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+        !isset($config[Arg::METHOD]) && $config[Arg::METHOD] = $server['REQUEST_METHOD'] ?? 'GET';
         !isset($config[Arg::URI]) && $config[Arg::URI] = new Uri((string) Factory::marshalRequestUri($server));
         !isset($config[Arg::VERSION]) && $config[Arg::VERSION] = substr($server['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
 

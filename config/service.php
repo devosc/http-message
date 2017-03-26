@@ -7,7 +7,6 @@ use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Plugin;
 use Symfony\Component\HttpFoundation\ApacheRequest;
 use Valar\Plugin\ServerRequest;
-use Zend\Diactoros\Stream;
 
 return [
     'http-foundation\request' => new Plugin(
