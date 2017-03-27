@@ -17,12 +17,11 @@ class ServerRequest
 {
     /**
      * @param array|mixed $plugins
-     * @param mixed $http
      */
-    function __construct($plugins, $http)
+    function __construct($plugins)
     {
         parent::__construct(
-            _ServerRequest::class, [new _Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link, $http]
+            _ServerRequest::class, [new _Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
         );
     }
 }

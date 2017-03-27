@@ -5,7 +5,7 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Plugin\ScopedCall;
+use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Shared;
 
 class Args
@@ -16,17 +16,6 @@ class Args
      */
     function __construct($name = 'args')
     {
-        parent::__construct($name, new ScopedCall($this));
-    }
-
-    /**
-     * @return \Closure
-     */
-    function __invoke()
-    {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return $this->http->query->all();
-        };
+        parent::__construct($name, new GlobalVar('_GET'));
     }
 }

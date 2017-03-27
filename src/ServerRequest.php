@@ -8,7 +8,6 @@ namespace Valar;
 use Mvc5\Service\Service;
 use Mvc5\Request\Config\Request as _Request;
 use Mvc5\Request\Request as Mvc5Request;
-use Symfony\Component\HttpFoundation\ApacheRequest as HttpRequest;
 
 class ServerRequest
     extends Http\ServerRequest
@@ -20,11 +19,6 @@ class ServerRequest
     use _Request;
 
     /**
-     * @var HttpRequest
-     */
-    protected $http;
-
-    /**
      * @var Service
      */
     protected $service;
@@ -32,12 +26,10 @@ class ServerRequest
     /**
      * @param array|\ArrayAccess $config
      * @param Service $service
-     * @param HttpRequest $http
      */
-    function __construct($config, Service $service, HttpRequest $http)
+    function __construct($config, Service $service)
     {
-        $this->config = $config;
-        $this->http = $http;
+        parent::__construct($config);
         $this->service = $service;
     }
 }

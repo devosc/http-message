@@ -5,9 +5,11 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
+use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class Uri
     extends Shared
@@ -27,15 +29,7 @@ class Uri
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return new HttpUri([
-                'scheme' => $this->http->getScheme(),
-                'host'   => $this->http->getHost(),
-                'port'   => $this->http->getPort(),
-                'user'   => $this->http->getUser(),
-                'pass'   => $this->http->getPassword(),
-                'path'   => urldecode($this->http->getPathInfo()),
-                'query'  => $this->http->getQueryString(),
-            ]);
+            return new HttpUri((string) Factory::marshalUriFromServer($this[Arg::SERVER], \iterator_to_array($this[Arg::HEADERS])));
         };
     }
 }

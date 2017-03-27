@@ -5,9 +5,10 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Plugin\ScopedCall;
+use Mvc5\Plugin\Call;
+use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Shared;
-use Zend\Diactoros\ServerRequestFactory;
+use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class Files
     extends Shared
@@ -17,16 +18,8 @@ class Files
      */
     function __construct($name = 'files')
     {
-        parent::__construct($name, new ScopedCall($this));
-    }
-
-    /**
-     * @return \Closure
-     */
-    function __invoke()
-    {
-        return function() {
-            return ServerRequestFactory::normalizeFiles($_FILES);
-        };
+        parent::__construct(
+            $name, new Call('@' . Factory::class . ' ::normalizeFiles', [new GlobalVar('_FILES')])
+        );
     }
 }

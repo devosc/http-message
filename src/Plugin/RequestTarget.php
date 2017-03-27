@@ -27,13 +27,10 @@ class RequestTarget
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-
-            $query = $this[Arg::URI][Arg::QUERY];
-            $target = $this[Arg::URI][Arg::PATH];
-
-            $query && $target .= '?' . $target;
-
-            return empty($target) ? '/' : $target;
+            $uri = $this[Arg::URI];
+            $query = $uri[Arg::QUERY] ?? '';
+            $path = $uri[Arg::PATH] ?? '';
+            return !$uri ? '/' : ($path ? $path . ($query ? '?' . $query : '') : '');
         };
     }
 }

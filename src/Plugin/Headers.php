@@ -9,6 +9,7 @@ use Mvc5\Arg;
 use Mvc5\Http\Headers\Config as HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class Headers
     extends Shared
@@ -28,7 +29,7 @@ class Headers
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            $headers = $this->http->headers->all();
+            $headers = Factory::marshalHeaders($this[Arg::SERVER]);
 
             !isset($headers[Arg::HOST]) && ($uri = $this[Arg::URI]) && ($host = $uri->getHost()) &&
                 $headers[Arg::HOST] = [$host . (($port = $uri->getPort()) ? ':' . $port : '')];
