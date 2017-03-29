@@ -185,6 +185,6 @@ trait Request
 
         $port = $uri->getPort();
 
-        return $this->withHeader(Arg::HOST, $host . ($port ? ':' . $port : ''));
+        return $this->withHeader(Arg::HOST, [$host . ($port ? ':' . $port : '')]);
     }
 }
