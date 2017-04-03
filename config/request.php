@@ -22,7 +22,7 @@ use Valar\Plugin\UserAgent;
 use Valar\Plugin\Version;
 
 return [
-    //'args'           => new Args,
+    'args'           => new Args,
     //'attributes'     => new Attributes,
     //'body'           => new Body,
     'client_address' => new ClientAddress,
@@ -38,10 +38,10 @@ return [
     'name'           => new NullValue,
     'params'         => new NullValue,
     'route'          => new NullValue,
-    //'server'         => new Server,
+    'server'         => new Server,
     'session'        => new Session,
     'target'         => new RequestTarget,
-    //'uri'            => new Uri,
+    'uri'            => new Uri,
     'user'           => new User,
     'user_agent'     => new UserAgent,
     //'version'        => new Version,
