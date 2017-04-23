@@ -30,7 +30,7 @@ class RequestTarget
             $uri = $this[Arg::URI];
             $query = $uri[Arg::QUERY] ?? '';
             $path = $uri[Arg::PATH] ?? '';
-            return !$uri ? '/' : ($path ? $path . ($query ? '?' . $query : '') : '');
+            return ($path ?: '/') . ($query ? '?' . $query : '');
         };
     }
 }
