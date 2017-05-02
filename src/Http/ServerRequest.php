@@ -7,7 +7,7 @@ namespace Valar\Http;
 
 use Mvc5\Arg;
 use Mvc5\Http\Headers\Config as HttpHeaders;
-use Mvc5\Immutable as Attributes;
+use Mvc5\Model as Attributes;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\PhpInputStream;
 use Zend\Diactoros\ServerRequestFactory as Factory;
