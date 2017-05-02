@@ -5,9 +5,11 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
+use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class Uri
     extends Shared
@@ -21,21 +23,32 @@ class Uri
     }
 
     /**
+     * @param array $server
+     * @param array $headers
+     * @return HttpUri
+     */
+    static function uri($server, $headers)
+    {
+        $uri = Factory::marshalUriFromServer($server, $headers);
+
+        return new HttpUri([
+            'scheme' => $uri->getScheme(),
+            'host'   => $uri->getHost(),
+            'port'   => $uri->getPort(),
+            'user'   => $headers['PHP_AUTH_USER'] ?? null,
+            'pass'   => $headers['PHP_AUTH_PW'] ?? null,
+            'path'   => rawurldecode($uri->getPath()),
+            'query'  => urldecode($uri->getQuery()),
+        ]);
+    }
+
+    /**
      * @return \Closure
      */
     function __invoke()
     {
         return function() {
-            /** @var \Valar\ServerRequest $this */
-            return new HttpUri([
-                'scheme' => $this->http->getScheme(),
-                'host'   => $this->http->getHost(),
-                'port'   => $this->http->getPort(),
-                'user'   => $this->http->getUser(),
-                'pass'   => $this->http->getPassword(),
-                'path'   => urldecode($this->http->getPathInfo()),
-                'query'  => $this->http->getQueryString(),
-            ]);
+            return Uri::uri($this[Arg::SERVER], \iterator_to_array($this[Arg::HEADERS]));
         };
     }
 }

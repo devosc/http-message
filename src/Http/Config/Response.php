@@ -147,8 +147,6 @@ trait Response
      */
     function withStatus($code, $reasonPhrase = '')
     {
-        $new = $this->with(Arg::STATUS, $code);
-        $new[Arg::REASON] = $reasonPhrase;
-        return $new;
+        return $this->with([Arg::STATUS => $code, Arg::REASON => $reasonPhrase]);
     }
 }

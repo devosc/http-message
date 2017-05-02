@@ -5,6 +5,7 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
@@ -26,7 +27,9 @@ class Method
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return $this->http->getMethod();
+            return strtoupper(
+                $this[Arg::HEADERS]['X-HTTP-METHOD-OVERRIDE'] ?? ($this[Arg::SERVER]['REQUEST_METHOD'] ?? 'GET')
+            );
         };
     }
 }

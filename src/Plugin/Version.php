@@ -5,6 +5,7 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
@@ -26,7 +27,7 @@ class Version
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return substr($this->http->server->get('SERVER_PROTOCOL'), strlen('HTTP/'));
+            return substr($this[Arg::SERVER]['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
         };
     }
 }

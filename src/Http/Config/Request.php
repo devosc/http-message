@@ -74,7 +74,7 @@ trait Request
     {
         return $this[Arg::TARGET] ?? (
             ($uri = $this->getUri()) ?
-                ($uri->getPath() ? $uri->getPath() . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '') : '/'
+                ($uri->getPath() ? : '/') . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '/'
         );
     }
 
@@ -185,6 +185,6 @@ trait Request
 
         $port = $uri->getPort();
 
-        return $this->withHeader(Arg::HOST, $host . ($port ? ':' . $port : ''));
+        return $this->withHeader(Arg::HOST, [$host . ($port ? ':' . $port : '')]);
     }
 }

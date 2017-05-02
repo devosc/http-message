@@ -5,8 +5,10 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Plugin\ScopedCall;
+use Mvc5\Plugin\Call;
+use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Shared;
+use Zend\Diactoros\ServerRequestFactory as Factory;
 
 class Server
     extends Shared
@@ -16,17 +18,8 @@ class Server
      */
     function __construct($name = 'server')
     {
-        parent::__construct($name, new ScopedCall($this));
-    }
-
-    /**
-     * @return \Closure
-     */
-    function __invoke()
-    {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return $this->http->server->all();
-        };
+        parent::__construct(
+            $name, new Call('@' . Factory::class . '::normalizeServer', [new GlobalVar('_SERVER')])
+        );
     }
 }

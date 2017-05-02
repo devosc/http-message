@@ -146,8 +146,6 @@ trait Uri
      */
     function withUserInfo($user, $password = null)
     {
-        $new = $this->with(Arg::USER, $user);
-        $new[Arg::PASS] = $password;
-        return $new;
+        return $this->with([Arg::USER => $user, Arg::PASS => $password]);
     }
 }

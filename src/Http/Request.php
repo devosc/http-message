@@ -38,7 +38,9 @@ class Request
             $config[Arg::URI] = new Uri($config[Arg::URI]);
 
         !isset($config[Arg::HEADERS][Arg::HOST]) && ($uri = $config[Arg::URI] ?? null) && ($host = $uri->getHost()) &&
-            $config[Arg::HEADERS][Arg::HOST] = [$host . ($uri->getPort() ? ':' . $uri->getPort() : '')];
+            $config[Arg::HEADERS] = $config[Arg::HEADERS]->with(
+                Arg::HOST, [$host . ($uri->getPort() ? ':' . $uri->getPort() : '')]
+            );
 
         $this->config = $config;
     }

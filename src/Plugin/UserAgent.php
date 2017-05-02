@@ -5,6 +5,7 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
@@ -26,7 +27,7 @@ class UserAgent
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return $this->http->server->get('HTTP_USER_AGENT');
+            return $this[Arg::SERVER]['HTTP_USER_AGENT'] ?? '';
         };
     }
 }
