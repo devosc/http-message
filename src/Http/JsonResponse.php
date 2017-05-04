@@ -12,7 +12,7 @@ class JsonResponse
     extends Response
 {
     /**
-     * @param array $data
+     * @param $data
      * @param int $status
      * @param array $headers
      */

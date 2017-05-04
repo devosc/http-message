@@ -6,14 +6,13 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Arg;
-use Mvc5\Http\Config\Uri as _Uri;
 
 trait Uri
 {
     /**
      *
      */
-    use _Uri;
+    use \Mvc5\Http\Config\Uri;
 
     /**
      * @return string

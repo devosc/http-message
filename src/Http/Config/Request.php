@@ -6,7 +6,6 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Arg;
-use Mvc5\Http\Config\Request as HttpRequest;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -15,7 +14,7 @@ trait Request
     /**
      *
      */
-    use HttpRequest;
+    use \Mvc5\Http\Config\Request;
 
     /**
      * @return StreamInterface|mixed

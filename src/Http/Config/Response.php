@@ -6,7 +6,6 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Arg;
-use Mvc5\Http\Config\Response as HttpResponse;
 use Psr\Http\Message\StreamInterface;
 
 trait Response
@@ -14,7 +13,7 @@ trait Response
     /**
      *
      */
-    use HttpResponse;
+    use \Mvc5\Http\Config\Response;
 
     /**
      * @return mixed|StreamInterface
