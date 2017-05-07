@@ -42,7 +42,7 @@ trait Response
     }
 
     /**
-     * @return array|\ArrayAccess|mixed
+     * @return array|\Mvc5\Http\Headers|mixed
      */
     function getHeaders()
     {

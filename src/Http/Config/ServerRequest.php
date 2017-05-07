@@ -25,7 +25,7 @@ trait ServerRequest
     }
 
     /**
-     * @return array|mixed
+     * @return array|\Mvc5\Config\Model|mixed
      */
     function getAttributes()
     {
