@@ -44,6 +44,6 @@ class Request
                 Arg::HOST, [$host . ($uri->getPort() ? ':' . $uri->getPort() : '')]
             );
 
-        $this->config = $config;
+        parent::__construct($config);
     }
 }

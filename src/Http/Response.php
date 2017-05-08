@@ -35,6 +35,6 @@ class Response
         is_array($config[Arg::HEADERS]) &&
             $config[Arg::HEADERS] = new HttpHeaders($config[Arg::HEADERS]);
 
-        $this->config = $config;
+        parent::__construct($config);
     }
 }
