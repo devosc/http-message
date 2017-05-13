@@ -6,15 +6,14 @@
 namespace Valar\Http;
 
 use Mvc5\Arg;
-use Mvc5\Http\Headers\Config as HttpHeaders;
-use Mvc5\Http\Response as HttpResponse;
+use Mvc5\Http\HttpHeaders;
 use Mvc5\Model;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Stream;
 
 class Response
     extends Model
-    implements HttpResponse, ResponseInterface
+    implements \Mvc5\Http\Response, ResponseInterface
 {
     /**
      *

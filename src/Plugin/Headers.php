@@ -6,7 +6,7 @@
 namespace Valar\Plugin;
 
 use Mvc5\Arg;
-use Mvc5\Http\Headers\Config as HttpHeaders;
+use Mvc5\Http\HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Zend\Diactoros\ServerRequestFactory;

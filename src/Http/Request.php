@@ -6,8 +6,7 @@
 namespace Valar\Http;
 
 use Mvc5\Arg;
-use Mvc5\Http\Headers\Config as HttpHeaders;
-use Mvc5\Http\Request as HttpRequest;
+use Mvc5\Http\HttpHeaders;
 use Mvc5\Model;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
@@ -15,7 +14,7 @@ use Zend\Diactoros\Stream;
 
 class Request
     extends Model
-    implements HttpRequest, RequestInterface
+    implements \Mvc5\Http\Request, RequestInterface
 {
     /**
      *
