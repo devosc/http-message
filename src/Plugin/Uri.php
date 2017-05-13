@@ -9,7 +9,7 @@ use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
-use Zend\Diactoros\ServerRequestFactory as Factory;
+use Zend\Diactoros\ServerRequestFactory;
 
 class Uri
     extends Shared
@@ -29,7 +29,7 @@ class Uri
      */
     static function uri($server, $headers)
     {
-        $uri = Factory::marshalUriFromServer($server, $headers);
+        $uri = ServerRequestFactory::marshalUriFromServer($server, $headers);
 
         return new HttpUri([
             'scheme' => $uri->getScheme(),

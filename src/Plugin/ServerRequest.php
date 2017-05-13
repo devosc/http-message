@@ -8,9 +8,9 @@ namespace Valar\Plugin;
 use Mvc5\App;
 use Mvc5\Arg;
 use Mvc5\Plugin\Link;
-use Mvc5\Plugin\Plugin as _Plugin;
+use Mvc5\Plugin\Plugin;
 use Mvc5\Plugin\Scope;
-use Valar\ServerRequest as _ServerRequest;
+use Valar\ServerRequest as Request;
 
 class ServerRequest
     extends Scope
@@ -21,7 +21,7 @@ class ServerRequest
     function __construct($plugins)
     {
         parent::__construct(
-            _ServerRequest::class, [new _Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
+            Request::class, [new Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
         );
     }
 }
