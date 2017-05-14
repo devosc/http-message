@@ -6,16 +6,16 @@
 namespace Valar;
 
 use Mvc5\Service\Service;
-use Mvc5\Request\Config\Request;
+use Mvc5\Request\Request;
 
 class ServerRequest
     extends Http\ServerRequest
-    implements \Mvc5\Request\Request
+    implements Request
 {
     /**
      *
      */
-    use Request;
+    use \Mvc5\Request\Config\Request;
 
     /**
      * @var Service
