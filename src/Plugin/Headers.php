@@ -28,13 +28,7 @@ class Headers
     function __invoke()
     {
         return function() {
-            /** @var \Valar\ServerRequest $this */
-            $headers = ServerRequestFactory::marshalHeaders($this[Arg::SERVER]);
-
-            !isset($headers[Arg::HOST]) && ($uri = $this[Arg::URI]) && ($host = $uri->getHost()) &&
-                $headers[Arg::HOST] = [$host . (($port = $uri->getPort()) ? ':' . $port : '')];
-
-            return new HttpHeaders($headers);
+            return new HttpHeaders(ServerRequestFactory::marshalHeaders($this[Arg::SERVER]));
         };
     }
 }
