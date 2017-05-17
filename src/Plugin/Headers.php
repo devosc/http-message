@@ -26,28 +26,27 @@ class Headers
      * @param array $server
      * @return HttpHeaders
      */
-    static function headersFromServer(array $server)
+    static function headersFromServer($server)
     {
         $headers = ServerRequestFactory::marshalHeaders($server);
 
-        !isset($headers[Arg::HOST]) && ($host = static::hostAndPortFromServer($server, $headers)) &&
+        !isset($headers[Arg::HOST]) && ($host = static::hostAndPortFromServer($server)) &&
             $headers[Arg::HOST] = $host;
 
         return new HttpHeaders($headers);
     }
 
     /**
-     * @param $server
-     * @param $headers
+     * @param array $server
      * @return string
      */
-    protected static function hostAndPortFromServer($server, $headers)
+    protected static function hostAndPortFromServer($server)
     {
         $accumulator = (object) ['host' => '', 'port' => null];
 
-        ServerRequestFactory::marshalHostAndPortFromHeaders($accumulator, $server, $headers);
+        ServerRequestFactory::marshalHostAndPortFromHeaders($accumulator, $server, []);
 
-        return $accumulator->host ? $accumulator->host . ($accumulator->port ? ':' . $accumulator->port : '')  : '';
+        return  $accumulator->host . ($accumulator->port ? ':' . $accumulator->port : '');
     }
 
     /**
