@@ -23,20 +23,6 @@ class Headers
     }
 
     /**
-     * @param $server
-     * @param $headers
-     * @return string
-     */
-    protected static function hostAndPortFromServer($server, $headers)
-    {
-        $accumulator = (object) ['host' => '', 'port' => null];
-
-        ServerRequestFactory::marshalHostAndPortFromHeaders($accumulator, $server, $headers);
-
-        return $accumulator->host ? $accumulator->host . ($accumulator->port ? ':' . $accumulator->port : '')  : '';
-    }
-
-    /**
      * @param array $server
      * @return HttpHeaders
      */
@@ -48,6 +34,20 @@ class Headers
             $headers[Arg::HOST] = $host;
 
         return new HttpHeaders($headers);
+    }
+
+    /**
+     * @param $server
+     * @param $headers
+     * @return string
+     */
+    protected static function hostAndPortFromServer($server, $headers)
+    {
+        $accumulator = (object) ['host' => '', 'port' => null];
+
+        ServerRequestFactory::marshalHostAndPortFromHeaders($accumulator, $server, $headers);
+
+        return $accumulator->host ? $accumulator->host . ($accumulator->port ? ':' . $accumulator->port : '')  : '';
     }
 
     /**
