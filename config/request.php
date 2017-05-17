@@ -32,7 +32,7 @@ return [
     'error'          => new NullValue,
     'exception'      => new NullValue,
     //'files'          => new Files,
-    //'headers'        => new Headers,
+    'headers'        => new Headers,
     'matched'        => new NullValue,
     //'method'         => new Method,
     'name'           => new NullValue,

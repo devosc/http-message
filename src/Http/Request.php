@@ -40,7 +40,7 @@ class Request
 
         !isset($config[Arg::HEADERS][Arg::HOST]) && ($uri = $config[Arg::URI] ?? null) && ($host = $uri->getHost()) &&
             $config[Arg::HEADERS] = $config[Arg::HEADERS]->with(
-                Arg::HOST, [$host . ($uri->getPort() ? ':' . $uri->getPort() : '')]
+                Arg::HOST, $host . ($uri->getPort() ? ':' . $uri->getPort() : '')
             );
 
         parent::__construct($config);
