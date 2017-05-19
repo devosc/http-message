@@ -37,6 +37,7 @@ return [
     //'method'         => new Method,
     'name'           => new NullValue,
     'params'         => new NullValue,
+    'parent'         => new NullValue,
     'route'          => new NullValue,
     'server'         => new Server,
     'session'        => new Session,
