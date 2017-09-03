@@ -33,7 +33,7 @@ trait Uri
      */
     function getFragment()
     {
-        return $this->fragment();
+        return (string) $this->fragment();
     }
 
     /**
@@ -41,7 +41,7 @@ trait Uri
      */
     function getHost()
     {
-        return $this->host();
+        return (string) $this->host();
     }
 
     /**
@@ -49,7 +49,7 @@ trait Uri
      */
     function getPath()
     {
-        return $this->path();
+        return (string) $this->path();
     }
 
     /**
@@ -65,7 +65,7 @@ trait Uri
      */
     function getQuery()
     {
-        return $this->query();
+        return (string) $this->query();
     }
 
     /**
@@ -73,7 +73,7 @@ trait Uri
      */
     function getScheme()
     {
-        return $this->scheme();
+        return (string) $this->scheme();
     }
 
     /**
