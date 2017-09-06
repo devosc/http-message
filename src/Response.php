@@ -5,6 +5,8 @@
 
 namespace Valar;
 
+use Mvc5\Response\Config\HttpResponse;
+
 class Response
     extends Http\Response
     implements \Mvc5\Response\Response
@@ -12,5 +14,5 @@ class Response
     /**
      *
      */
-    use \Mvc5\Response\Config\Response;
+    use HttpResponse;
 }
