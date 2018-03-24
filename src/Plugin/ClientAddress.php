@@ -35,7 +35,6 @@ class ClientAddress
     function __invoke()
     {
         return function() {
-            /** @var \Valar\ServerRequest $this */
             return $this->clientIpAddress($this[Arg::SERVER]);
         };
     }
