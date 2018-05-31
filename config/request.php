@@ -4,6 +4,7 @@
  */
 
 use Mvc5\Plugin\NullValue;
+use Valar\Plugin\AcceptsJson;
 use Valar\Plugin\Args;
 use Valar\Plugin\Attributes;
 use Valar\Plugin\Body;
@@ -22,13 +23,14 @@ use Valar\Plugin\UserAgent;
 use Valar\Plugin\Version;
 
 return [
+    'accepts_json' => new AcceptsJson,
     'args'           => new Args,
     //'attributes'     => new Attributes,
     //'body'           => new Body,
     'client_address' => new ClientAddress,
     'controller'     => new NullValue,
     //'cookies'        => new Cookies,
-    //'data'           => new Data,
+    'data'           => new Data,
     'error'          => new NullValue,
     'exception'      => new NullValue,
     //'files'          => new Files,

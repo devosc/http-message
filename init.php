@@ -12,6 +12,7 @@ include __DIR__ . '/src/Http/JsonResponse.php';
 include __DIR__ . '/src/Http/RedirectResponse.php';
 include __DIR__ . '/src/Http/ServerRequest.php';
 include __DIR__ . '/src/Http/Uri.php';
+include __DIR__ . '/src/Plugin/AcceptsJson.php';
 include __DIR__ . '/src/Plugin/Args.php';
 include __DIR__ . '/src/Plugin/Attributes.php';
 include __DIR__ . '/src/Plugin/Body.php';
