@@ -24,4 +24,13 @@ class ServerRequest
             Request::class, [new Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
         );
     }
+
+    /**
+     * @param array $options
+     * @return ServerRequest
+     */
+    static function with(array $options = []) : self
+    {
+        return new static($options + include __DIR__ . '/../../config/request.php');
+    }
 }
