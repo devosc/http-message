@@ -39,7 +39,7 @@ trait Request
      */
     function getHeaderLine($name)
     {
-        return implode(',', (array) ($this->getHeader($name) ?? ''));
+        return implode(', ', (array) ($this->getHeader($name) ?? ''));
     }
 
     /**
