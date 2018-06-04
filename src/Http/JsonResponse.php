@@ -21,7 +21,7 @@ class JsonResponse
         parent::__construct([
             Arg::BODY => new JsonStream($data),
             Arg::STATUS => $status,
-            Arg::HEADERS => $headers + ['Content-Type' => 'application/json']
+            Arg::HEADERS => $headers + ['content-type' => 'application/json']
         ]);
     }
 }

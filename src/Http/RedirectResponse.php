@@ -17,6 +17,6 @@ class RedirectResponse
      */
     function __construct($url, $status = 302, array $headers = [])
     {
-        parent::__construct([Arg::STATUS => $status, Arg::HEADERS => $headers + ['Location' => (string) $url]]);
+        parent::__construct([Arg::STATUS => $status, Arg::HEADERS => $headers + ['location' => (string) $url]]);
     }
 }
