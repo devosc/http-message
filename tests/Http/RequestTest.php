@@ -202,13 +202,12 @@ class RequestTest
     }
 
     /**
-     * @return mixed
+     *
      */
     function test_with_uri()
     {
         $request = (new Request)->withUri(new Uri(['path' => '/foo']));
 
         $this->assertEquals('/foo', $request->getUri()->getPath());
-
     }
 }

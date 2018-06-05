@@ -23,7 +23,7 @@ class AcceptsJson
 
     /**
      * @param string|null $accept
-     * @return array
+     * @return string|null
      */
     static function header(?string $accept) : ?string
     {
