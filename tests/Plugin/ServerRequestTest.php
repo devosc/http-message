@@ -14,7 +14,7 @@ class ServerRequestTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {
@@ -24,7 +24,7 @@ class ServerRequestTest
     }
 
     /**
-     *
+     * @throws \Throwable
      */
     function test_with_plugins()
     {

@@ -14,7 +14,7 @@ class AttributesTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

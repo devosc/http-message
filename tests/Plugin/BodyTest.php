@@ -15,7 +15,7 @@ class BodyTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

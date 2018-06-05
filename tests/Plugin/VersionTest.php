@@ -15,7 +15,7 @@ class VersionTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

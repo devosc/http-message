@@ -15,7 +15,7 @@ class HeadersTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

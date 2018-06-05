@@ -15,7 +15,7 @@ class DataTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test_json()
     {
@@ -34,7 +34,7 @@ class DataTest
     }
 
     /**
-     *
+     * @throws \Throwable
      */
     function test_post()
     {

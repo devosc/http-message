@@ -14,7 +14,7 @@ class MethodTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

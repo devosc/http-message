@@ -15,7 +15,7 @@ class FilesTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

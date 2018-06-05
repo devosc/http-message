@@ -14,7 +14,7 @@ class ServerTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

@@ -15,7 +15,7 @@ class UserTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

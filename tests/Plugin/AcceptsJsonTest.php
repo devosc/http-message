@@ -15,7 +15,7 @@ class AcceptsJsonTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test_accepts_json()
     {
@@ -33,7 +33,7 @@ class AcceptsJsonTest
     }
 
     /**
-     *
+     * @throws \Throwable
      */
     function test_does_not_accept_json()
     {

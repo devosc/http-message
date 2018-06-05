@@ -14,7 +14,7 @@ class ArgsTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

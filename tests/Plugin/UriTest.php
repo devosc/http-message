@@ -17,7 +17,7 @@ class UriTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

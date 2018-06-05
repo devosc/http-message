@@ -15,7 +15,7 @@ class ClientAddressTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

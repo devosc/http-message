@@ -14,7 +14,7 @@ class CookiesTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

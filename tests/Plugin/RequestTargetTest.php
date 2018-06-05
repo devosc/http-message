@@ -15,7 +15,7 @@ class RequestTargetTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {

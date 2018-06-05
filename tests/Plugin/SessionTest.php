@@ -15,7 +15,7 @@ class SessionTest
     extends TestCase
 {
     /**
-     *
+     * @throws \Throwable
      */
     function test()
     {
