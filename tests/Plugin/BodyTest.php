@@ -23,7 +23,7 @@ class BodyTest
 
         $config = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config, new App);
+        $request = new ServerRequest($config);
         $config->scope($request);
 
         $this->assertInstanceOf(StreamInterface::class, $request->getBody());

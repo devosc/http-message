@@ -26,7 +26,7 @@ class Session
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return $this->service->plugin('session');
+            return $this->service ? $this->service->plugin('session') : null;
         };
     }
 }

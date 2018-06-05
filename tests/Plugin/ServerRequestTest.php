@@ -18,7 +18,7 @@ class ServerRequestTest
      */
     function test()
     {
-        $app = new App(['services' => ['request' => new ServerRequest([])]], null, true);
+        $app = new App(['services' => ['request' => new ServerRequest]], null, true);
 
         $this->assertInstanceOf(Request::class, $app['request']);
     }

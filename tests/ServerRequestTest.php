@@ -5,7 +5,6 @@
 
 namespace Valar\Test;
 
-use Mvc5\App;
 use Valar\ServerRequest;
 use Psr\Http\Message\StreamInterface;
 use PHPUnit\Framework\TestCase;
@@ -18,8 +17,6 @@ class ServerRequestTest
      */
     function test()
     {
-        $request = new ServerRequest(null, new App);
-
-        $this->assertInstanceOf(StreamInterface::class, $request->getBody());
+        $this->assertInstanceOf(StreamInterface::class, (new ServerRequest)->getBody());
     }
 }

@@ -18,17 +18,17 @@ class ServerRequest
     use \Mvc5\Request\Config\Request;
 
     /**
-     * @var Service
+     * @var Service|null
      */
     protected $service;
 
     /**
      * @param array|\ArrayAccess $config
-     * @param Service $service
+     * @param Service|null $service
      */
-    function __construct($config, Service $service)
+    function __construct($config = [], Service $service = null)
     {
         parent::__construct($config);
-        $this->service = $service;
+        $service && $this->service = $service;
     }
 }

@@ -30,7 +30,7 @@ class HeadersTest
 
         $config = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config, new App);
+        $request = new ServerRequest($config);
         $config->scope($request);
 
         $this->assertEquals(['content-type' => ['application/json'], 'host' => ['phpdev']], $request->getHeaders());

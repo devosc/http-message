@@ -26,7 +26,7 @@ class User
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            return $this->service->plugin('user');
+            return $this->service ? $this->service->plugin('user') : null;
         };
     }
 }

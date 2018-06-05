@@ -26,7 +26,7 @@ class AcceptsJsonTest
 
         $config = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config, new App);
+        $request = new ServerRequest($config);
         $config->scope($request);
 
         $this->assertTrue($request->acceptsJson());
@@ -35,7 +35,7 @@ class AcceptsJsonTest
     /**
      *
      */
-    function test_does_not_accepts_json()
+    function test_does_not_accept_json()
     {
         $plugins = [
             'headers' => new Value(['accept' => '*/*']),
@@ -44,7 +44,7 @@ class AcceptsJsonTest
 
         $config = new App(['services' => $plugins]);
 
-        $request = new ServerRequest($config, new App);
+        $request = new ServerRequest($config);
         $config->scope($request);
 
         $this->assertFalse($request->acceptsJson());

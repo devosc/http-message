@@ -24,7 +24,7 @@ class ArgsTest
 
         $config = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config, new App);
+        $request = new ServerRequest($config);
         $config->scope($request);
 
         $this->assertEquals(['foo' => 'bar'], $request->args());
