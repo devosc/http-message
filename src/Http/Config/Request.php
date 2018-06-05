@@ -188,8 +188,8 @@ trait Request
             return $this->with(Arg::URI, $uri);
         }
 
-        $port = $uri->getPort();
+        $headers = $this->headers()->with(Arg::HOST, $host . (($port = $uri->getPort()) ? ':' . $port : ''));
 
-        return $this->withHeader(Arg::HOST, [$host . ($port ? ':' . $port : '')]);
+        return $this->with([Arg::HEADERS => $headers, Arg::URI => $uri]);
     }
 }

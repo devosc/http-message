@@ -8,13 +8,28 @@ namespace Valar\Test\Http;
 use Mvc5\Http\HttpHeaders;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
-use Valar\Http\Uri;
 use Valar\Http\Request;
+use Valar\Http\Uri;
 use Zend\Diactoros\PhpInputStream;
 
 class RequestTest
     extends TestCase
 {
+    /**
+     *
+     */
+    function test()
+    {
+        $request = new Request([
+            'headers' => ['content-type' => 'application/json'],
+            'uri' => ['host' => 'phpdev', 'port' => 8000]
+        ]);
+
+        $this->assertInstanceOf(HttpHeaders::class, $request['headers']);
+        $this->assertInstanceOf(Uri::class, $request['uri']);
+        $this->assertEquals('phpdev:8000', $request['headers']['host']);
+    }
+
     /**
      *
      */
@@ -140,11 +155,23 @@ class RequestTest
      */
     function test_with_added_header()
     {
+        $request = new Request(['headers' => new HttpHeaders]);
+
+        $request = $request->withAddedHeader('foo', 'baz');
+
+        $this->assertEquals('baz', $request->getHeader('foo'));
+    }
+
+    /**
+     *
+     */
+    function test_with_added_header_exists()
+    {
         $request = new Request(['headers' => new HttpHeaders(['Foo' => 'bar'])]);
 
         $request = $request->withAddedHeader('foo', 'baz');
 
-        $this->assertEquals(['foo' => ['bar', 'baz']], $request->getHeaders());
+        $this->assertEquals(['bar', 'baz'], $request->getHeader('foo'));
     }
 
     /**
@@ -209,5 +236,15 @@ class RequestTest
         $request = (new Request)->withUri(new Uri(['path' => '/foo']));
 
         $this->assertEquals('/foo', $request->getUri()->getPath());
+    }
+
+    /**
+     *
+     */
+    function test_with_uri_host()
+    {
+        $request = (new Request)->withUri(new Uri(['host' => 'phpdev', 'port' => 8000, 'path' => '/foo']));
+
+        $this->assertEquals('phpdev:8000', $request->getHeader('host'));
     }
 }
