@@ -7,7 +7,6 @@ namespace Valar\Http;
 
 use Mvc5\Arg;
 use Mvc5\Http\HttpHeaders;
-use Mvc5\Model;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\PhpInputStream;
 use Zend\Diactoros\ServerRequestFactory;
@@ -42,7 +41,7 @@ class ServerRequest
         );
 
         !isset($config[Arg::ARGS]) && $config[Arg::ARGS] = $_GET;
-        !isset($config[Arg::ATTRIBUTES]) && $config[Arg::ATTRIBUTES] = new Model;
+        !isset($config[Arg::ATTRIBUTES]) && $config[Arg::ATTRIBUTES] = [];
         !isset($config[Arg::BODY]) && $config[Arg::BODY] = new PhpInputStream;
         !isset($config[Arg::COOKIES]) && $config[Arg::COOKIES] = $_COOKIE;
         !isset($config[Arg::DATA]) && $config[Arg::DATA] = $_POST;
