@@ -19,7 +19,7 @@ class Files
     function __construct($name = 'files')
     {
         parent::__construct(
-            $name, new Call('@' . ServerRequestFactory::class . ' ::normalizeFiles', [new GlobalVar('_FILES')])
+            $name, new Call('@' . ServerRequestFactory::class . '::normalizeFiles', [new GlobalVar('_FILES')])
         );
     }
 }
