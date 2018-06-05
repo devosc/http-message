@@ -18,7 +18,7 @@ class ServerRequest
     /**
      * @param array|mixed $plugins
      */
-    function __construct($plugins)
+    function __construct($plugins = [])
     {
         parent::__construct(
             Request::class, [new Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
