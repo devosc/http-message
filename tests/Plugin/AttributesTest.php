@@ -26,5 +26,17 @@ class AttributesTest
         $config->scope($request);
 
         $this->assertEquals([], $request->getAttributes());
+
+        $request = $request->withAttribute('foo', 'bar');
+
+        $this->assertEquals(['foo' => 'bar'], $request->getAttributes());
+
+        $request = $request->withAttribute('foo', 'bat');
+
+        $this->assertEquals('bat', $request->getAttribute('foo'));
+
+        $request = $request->withoutAttribute('foo');
+
+        $this->assertEquals([], $request->getAttributes());
     }
 }
