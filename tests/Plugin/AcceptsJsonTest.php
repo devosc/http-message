@@ -42,7 +42,7 @@ class AcceptsJsonTest
             'accepts_json' => new AcceptsJson
         ];
 
-        $config = new App(['services' => $plugins]);
+        $config = new App(['services' => $plugins], null, true, true);
 
         $request = new ServerRequest($config);
         $config->scope($request);
