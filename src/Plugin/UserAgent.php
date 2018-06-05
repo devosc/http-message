@@ -13,9 +13,9 @@ class UserAgent
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'user_agent')
+    function __construct(string $name = 'user_agent')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -23,7 +23,7 @@ class UserAgent
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             /** @var \Valar\ServerRequest $this */

@@ -15,9 +15,9 @@ class Uri
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'uri')
+    function __construct(string $name = 'uri')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -27,7 +27,7 @@ class Uri
      * @param array $headers
      * @return HttpUri
      */
-    static function uri($server, $headers)
+    static function uri(array $server, array $headers) : HttpUri
     {
         $uri = ServerRequestFactory::marshalUriFromServer($server, $headers);
 
@@ -45,7 +45,7 @@ class Uri
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             return Uri::uri($this[Arg::SERVER], \iterator_to_array($this[Arg::HEADERS]));

@@ -27,7 +27,7 @@ trait Response
      * @param $name
      * @return array
      */
-    function getHeader($name)
+    function getHeader($name) : array
     {
         return (array) ($this->headers()[$name] ?? null);
     }
@@ -36,7 +36,7 @@ trait Response
      * @param $name
      * @return string
      */
-    function getHeaderLine($name)
+    function getHeaderLine($name) : string
     {
         return implode(', ', (array) ($this->getHeader($name) ?? ''));
     }
@@ -44,7 +44,7 @@ trait Response
     /**
      * @return array
      */
-    function getHeaders()
+    function getHeaders() : array
     {
         $headers = [];
 
@@ -58,7 +58,7 @@ trait Response
     /**
      * @return string
      */
-    function getProtocolVersion()
+    function getProtocolVersion() : string
     {
         return $this->version();
     }
@@ -66,7 +66,7 @@ trait Response
     /**
      * @return string
      */
-    function getReasonPhrase()
+    function getReasonPhrase() : string
     {
         return $this->reason();
     }
@@ -74,7 +74,7 @@ trait Response
     /**
      * @return int
      */
-    function getStatusCode()
+    function getStatusCode() : int
     {
         return $this->status();
     }
@@ -83,7 +83,7 @@ trait Response
      * @param $name
      * @return bool
      */
-    function hasHeader($name)
+    function hasHeader($name) : bool
     {
         return isset($this[Arg::HEADERS][$name]);
     }

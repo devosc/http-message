@@ -27,17 +27,18 @@ trait ServerRequest
     /**
      * @return array
      */
-    function getAttributes()
+    function getAttributes() : array
     {
         return $this[Arg::ATTRIBUTES] ?? [];
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    function getCookieParams()
+    function getCookieParams() : array
     {
-        return $this[Arg::COOKIES] ?? [];
+        /** @var array|\Traversable $cookies */
+        return is_array($cookies = $this[Arg::COOKIES] ?? []) ? $cookies : \iterator_to_array($cookies);
     }
 
     /**
@@ -49,9 +50,9 @@ trait ServerRequest
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    function getQueryParams()
+    function getQueryParams() : array
     {
         return $this[Arg::ARGS] ?? [];
     }
@@ -59,7 +60,7 @@ trait ServerRequest
     /**
      * @return array
      */
-    function getServerParams()
+    function getServerParams() : array
     {
         return $this[Arg::SERVER] ?? [];
     }
@@ -67,7 +68,7 @@ trait ServerRequest
     /**
      * @return array
      */
-    function getUploadedFiles()
+    function getUploadedFiles() : array
     {
         return $this[Arg::FILES] ?? [];
     }

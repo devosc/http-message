@@ -5,6 +5,7 @@
 
 namespace Valar\Test\Http;
 
+use Mvc5\Cookie\HttpCookies;
 use Valar\Http\ServerRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -38,6 +39,16 @@ class ServerRequestTest
     function test_get_cookie_params()
     {
         $request = new ServerRequest(['cookies' => ['foo' => 'bar']]);
+
+        $this->assertEquals(['foo' => 'bar'], $request->getCookieParams());
+    }
+
+    /**
+     *
+     */
+    function test_get_cookie_params_from_traversable()
+    {
+        $request = new ServerRequest(['cookies' => new HttpCookies(['foo' => 'bar'])]);
 
         $this->assertEquals(['foo' => 'bar'], $request->getCookieParams());
     }

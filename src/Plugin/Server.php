@@ -14,9 +14,9 @@ class Server
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'server')
+    function __construct(string $name = 'server')
     {
         parent::__construct(
             $name, new Call('@' . ServerRequestFactory::class . '::normalizeServer', [new GlobalVar('_SERVER')])

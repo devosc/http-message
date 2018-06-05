@@ -13,9 +13,9 @@ class Version
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'version')
+    function __construct(string $name = 'version')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -23,7 +23,7 @@ class Version
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             /** @var \Valar\ServerRequest $this */

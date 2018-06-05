@@ -15,9 +15,9 @@ class Headers
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'headers')
+    function __construct(string $name = 'headers')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -26,7 +26,7 @@ class Headers
      * @param array $server
      * @return HttpHeaders
      */
-    static function headersFromServer($server)
+    static function headersFromServer(array $server) : HttpHeaders
     {
         $headers = ServerRequestFactory::marshalHeaders($server);
 
@@ -40,7 +40,7 @@ class Headers
      * @param array $server
      * @return string
      */
-    protected static function hostAndPortFromServer($server)
+    protected static function hostAndPortFromServer(array $server) : string
     {
         $accumulator = (object) ['host' => '', 'port' => null];
 
@@ -52,7 +52,7 @@ class Headers
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             return Headers::headersFromServer($this[Arg::SERVER]);

@@ -13,9 +13,9 @@ class RequestTarget
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'target')
+    function __construct(string $name = 'target')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -23,7 +23,7 @@ class RequestTarget
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             /** @var \Valar\ServerRequest $this */

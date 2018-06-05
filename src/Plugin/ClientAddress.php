@@ -13,18 +13,18 @@ class ClientAddress
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'client_address')
+    function __construct(string $name = 'client_address')
     {
         parent::__construct($name, new ScopedCall($this));
     }
 
     /**
-     * @param $server
+     * @param array $server
      * @return string
      */
-    static function ipAddress($server)
+    static function ipAddress(array $server) : string
     {
         return $server['HTTP_CLIENT_IP'] ?? $server['HTTP_X_FORWARDED_FOR'] ?? $server['REMOTE_ADDR'] ?? '';
     }
@@ -32,7 +32,7 @@ class ClientAddress
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             return ClientAddress::ipAddress($this[Arg::SERVER]);

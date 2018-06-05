@@ -12,9 +12,9 @@ class Cookies
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'cookies')
+    function __construct(string $name = 'cookies')
     {
         parent::__construct($name, new GlobalVar('_COOKIE'));
     }

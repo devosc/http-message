@@ -12,9 +12,9 @@ class User
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'user')
+    function __construct(string $name = 'user')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -22,7 +22,7 @@ class User
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             /** @var \Valar\ServerRequest $this */

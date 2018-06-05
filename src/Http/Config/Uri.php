@@ -17,7 +17,7 @@ trait Uri
     /**
      * @return string
      */
-    function getAuthority()
+    function getAuthority() : string
     {
         $host = $this->host();
         $port = $this->port();
@@ -31,7 +31,7 @@ trait Uri
     /**
      * @return string
      */
-    function getFragment()
+    function getFragment() : string
     {
         return (string) $this->fragment();
     }
@@ -39,7 +39,7 @@ trait Uri
     /**
      * @return string
      */
-    function getHost()
+    function getHost() : string
     {
         return (string) $this->host();
     }
@@ -47,7 +47,7 @@ trait Uri
     /**
      * @return string
      */
-    function getPath()
+    function getPath() : string
     {
         return (string) $this->path();
     }
@@ -55,7 +55,7 @@ trait Uri
     /**
      * @return null|int
      */
-    function getPort()
+    function getPort() : ?int
     {
         return $this->port();
     }
@@ -63,7 +63,7 @@ trait Uri
     /**
      * @return string
      */
-    function getQuery()
+    function getQuery() : string
     {
         return (string) $this->query();
     }
@@ -71,7 +71,7 @@ trait Uri
     /**
      * @return string
      */
-    function getScheme()
+    function getScheme() : string
     {
         return (string) $this->scheme();
     }
@@ -79,7 +79,7 @@ trait Uri
     /**
      * @return string
      */
-    function getUserInfo()
+    function getUserInfo() : string
     {
         return !$this->user() ? '' : $this->user() . ($this->password() ? ':' . $this->password() : '');
     }

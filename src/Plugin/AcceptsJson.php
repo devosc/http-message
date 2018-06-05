@@ -14,9 +14,9 @@ class AcceptsJson
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'accepts_json')
+    function __construct(string $name = 'accepts_json')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -42,10 +42,9 @@ class AcceptsJson
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
-        return function()
-        {
+        return function() {
             return AcceptsJson::match(AcceptsJson::header($this[Arg::HEADERS]['accept']));
         };
     }

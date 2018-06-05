@@ -11,9 +11,9 @@ class Attributes
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'attributes')
+    function __construct(string $name = 'attributes')
     {
         parent::__construct($name, []);
     }

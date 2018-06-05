@@ -13,9 +13,9 @@ class Body
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'body')
+    function __construct(string $name = 'body')
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -23,7 +23,7 @@ class Body
     /**
      * @return \Closure
      */
-    function __invoke()
+    function __invoke() : \Closure
     {
         return function() {
             return new PhpInputStream;

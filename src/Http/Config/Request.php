@@ -37,7 +37,7 @@ trait Request
      * @param $name
      * @return string
      */
-    function getHeaderLine($name)
+    function getHeaderLine($name) : string
     {
         return implode(', ', (array) ($this->getHeader($name) ?? ''));
     }
@@ -45,7 +45,7 @@ trait Request
     /**
      * @return array
      */
-    function getHeaders()
+    function getHeaders() : array
     {
         $headers = [];
 
@@ -59,7 +59,7 @@ trait Request
     /**
      * @return string
      */
-    function getMethod()
+    function getMethod() : string
     {
         return $this->method();
     }
@@ -67,7 +67,7 @@ trait Request
     /**
      * @return string
      */
-    function getProtocolVersion()
+    function getProtocolVersion() : string
     {
         return $this->version();
     }
@@ -75,27 +75,28 @@ trait Request
     /**
      * @return string
      */
-    function getRequestTarget()
+    function getRequestTarget() : string
     {
+        /** @var UriInterface $uri */
         return $this[Arg::TARGET] ?? (
-            ($uri = $this->getUri()) ?
+            ($uri = $this[Arg::URI]) ?
                 ($uri->getPath() ? : '/') . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '/'
         );
     }
 
     /**
-     * @return UriInterface|mixed
+     * @return UriInterface
      */
-    function getUri()
+    function getUri() : UriInterface
     {
-        return $this->uri();
+        return $this[Arg::URI];
     }
 
     /**
      * @param $name
      * @return bool
      */
-    function hasHeader($name)
+    function hasHeader($name) : bool
     {
         return isset($this[Arg::HEADERS][$name]);
     }

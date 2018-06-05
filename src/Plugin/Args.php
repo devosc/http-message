@@ -12,9 +12,9 @@ class Args
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'args')
+    function __construct(string $name = 'args')
     {
         parent::__construct($name, new GlobalVar('_GET'));
     }

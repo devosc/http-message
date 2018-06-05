@@ -20,9 +20,9 @@ class Data
     protected $assoc = true;
 
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'data')
+    function __construct(string $name = 'data')
     {
         parent::__construct($name, new ScopedCall($this));
     }

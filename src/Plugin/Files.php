@@ -14,9 +14,9 @@ class Files
     extends Shared
 {
     /**
-     * @param $name
+     * @param string $name
      */
-    function __construct($name = 'files')
+    function __construct(string $name = 'files')
     {
         parent::__construct(
             $name, new Call('@' . ServerRequestFactory::class . '::normalizeFiles', [new GlobalVar('_FILES')])
