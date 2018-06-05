@@ -22,4 +22,20 @@ class ServerRequestTest
 
         $this->assertInstanceOf(Request::class, $app['request']);
     }
+
+    /**
+     *
+     */
+    function test_with_plugins()
+    {
+        $plugin = ServerRequest::with([
+            'foo' => function(){
+                return 'bar';
+            }
+        ]);
+
+        $app = new App(['services' => ['request' => $plugin]], null, true);
+
+        $this->assertEquals('bar', $app['request']['foo']);
+    }
 }
