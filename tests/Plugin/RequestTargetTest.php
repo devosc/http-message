@@ -20,7 +20,7 @@ class RequestTargetTest
     function test()
     {
         $plugins = [
-            'request_target' => new RequestTarget,
+            'target' => new RequestTarget,
             'uri' => new Uri(['path' => '/foo'])
         ];
 
