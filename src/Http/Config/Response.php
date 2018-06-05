@@ -46,7 +46,13 @@ trait Response
      */
     function getHeaders()
     {
-        return $this->headers();
+        $headers = [];
+
+        foreach($this->headers() as $key => $value) {
+            $headers[$key] = (array) $value;
+        }
+
+        return $headers;
     }
 
     /**
@@ -118,7 +124,7 @@ trait Response
      */
     function withHeader($name, $value)
     {
-        return $this->with(Arg::HEADERS, $this->getHeaders()->with($name, $value));
+        return $this->with(Arg::HEADERS, $this->headers()->with($name, $value));
     }
 
     /**
@@ -127,7 +133,7 @@ trait Response
      */
     function withoutHeader($name)
     {
-        return $this->with(Arg::HEADERS, $this->getHeaders()->without($name));
+        return $this->with(Arg::HEADERS, $this->headers()->without($name));
     }
 
     /**
