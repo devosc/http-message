@@ -18,7 +18,7 @@ class ServerRequestTest
      */
     function test()
     {
-        $app = new App(['services' => ['request' => new ServerRequest]], null, true);
+        $app = new App(['services' => ['request' => new ServerRequest]]);
 
         $this->assertInstanceOf(Request::class, $app['request']);
     }
@@ -34,7 +34,7 @@ class ServerRequestTest
             }
         ]);
 
-        $app = new App(['services' => ['request' => $plugin]], null, true);
+        $app = new App(['services' => ['request' => $plugin]]);
 
         $this->assertEquals('bar', $app['request']['foo']);
     }
