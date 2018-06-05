@@ -24,7 +24,7 @@ class ClientAddress
      * @param $server
      * @return string
      */
-    protected function clientIpAddress($server)
+    static function ipAddress($server)
     {
         return $server['HTTP_CLIENT_IP'] ?? $server['HTTP_X_FORWARDED_FOR'] ?? $server['REMOTE_ADDR'] ?? '';
     }
@@ -35,7 +35,7 @@ class ClientAddress
     function __invoke()
     {
         return function() {
-            return $this->clientIpAddress($this[Arg::SERVER]);
+            return ClientAddress::ipAddress($this[Arg::SERVER]);
         };
     }
 }
