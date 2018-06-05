@@ -79,7 +79,7 @@ trait ServerRequest
      */
     function withAttribute($name, $value)
     {
-        return $this->with(Arg::ATTRIBUTES, $this->getAttributes()->with($name, $value));
+        return $this->with(Arg::ATTRIBUTES, with($this->getAttributes(), $name, $value));
     }
 
     /**
@@ -97,7 +97,7 @@ trait ServerRequest
      */
     function withoutAttribute($name)
     {
-        return $this->with(Arg::ATTRIBUTES, $this->getAttributes()->without($name));
+        return $this->with(Arg::ATTRIBUTES, without($this->getAttributes(), $name));
     }
 
     /**
@@ -126,4 +126,27 @@ trait ServerRequest
     {
         return $this->with(Arg::FILES, $uploadedFiles);
     }
+}
+
+/**
+ * @param array $data
+ * @param string $name
+ * @param $value
+ * @return array
+ */
+function with(array $data, string $name, $value)
+{
+    $data[$name] = $value;
+    return $data;
+}
+
+/**
+ * @param array $data
+ * @param string $name
+ * @return array
+ */
+function without(array $data, string $name)
+{
+    unset($data[$name]);
+    return $data;
 }
