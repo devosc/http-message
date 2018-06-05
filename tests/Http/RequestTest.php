@@ -45,9 +45,10 @@ class RequestTest
      */
     function test_get_header()
     {
-        $request = new Request(['headers' => new HttpHeaders(['Foo' => ['bar', 'baz']])]);
+        $request = new Request(['headers' => new HttpHeaders(['Foo' => ['bar', 'baz'], 'Bar' => 'baz'])]);
 
         $this->assertEquals(['bar', 'baz'], $request->getHeader('foo'));
+        $this->assertEquals(['baz'], $request->getHeader('bar'));
     }
 
     /**
@@ -159,7 +160,7 @@ class RequestTest
 
         $request = $request->withAddedHeader('foo', 'baz');
 
-        $this->assertEquals('baz', $request->getHeader('foo'));
+        $this->assertEquals(['baz'], $request->getHeader('foo'));
     }
 
     /**
@@ -245,6 +246,6 @@ class RequestTest
     {
         $request = (new Request)->withUri(new Uri(['host' => 'phpdev', 'port' => 8000, 'path' => '/foo']));
 
-        $this->assertEquals('phpdev:8000', $request->getHeader('host'));
+        $this->assertEquals(['phpdev:8000'], $request->getHeader('host'));
     }
 }

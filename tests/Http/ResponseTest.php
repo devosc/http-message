@@ -29,9 +29,10 @@ class ResponseTest
      */
     function test_get_header()
     {
-        $response = new Response(['headers' => new HttpHeaders(['Foo' => ['bar', 'baz']])]);
+        $response = new Response(['headers' => new HttpHeaders(['Foo' => ['bar', 'baz'], 'Bar' => 'baz'])]);
 
         $this->assertEquals(['bar', 'baz'], $response->getHeader('foo'));
+        $this->assertEquals(['baz'], $response->getHeader('bar'));
     }
 
     /**
@@ -113,7 +114,7 @@ class ResponseTest
 
         $response = $response->withAddedHeader('foo', 'baz');
 
-        $this->assertEquals('baz', $response->getHeader('foo'));
+        $this->assertEquals(['baz'], $response->getHeader('foo'));
     }
 
     /**

@@ -26,11 +26,11 @@ trait Request
 
     /**
      * @param $name
-     * @return array|string|null
+     * @return array
      */
-    function getHeader($name)
+    function getHeader($name) : array
     {
-        return $this->headers()[$name] ?? null;
+        return (array) ($this->headers()[$name] ?? null);
     }
 
     /**
