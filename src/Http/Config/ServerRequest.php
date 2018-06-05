@@ -135,7 +135,7 @@ trait ServerRequest
  * @param $value
  * @return array
  */
-function with(array $data, string $name, $value)
+function with(array $data, string $name, $value) : array
 {
     $data[$name] = $value;
     return $data;
@@ -146,7 +146,7 @@ function with(array $data, string $name, $value)
  * @param string $name
  * @return array
  */
-function without(array $data, string $name)
+function without(array $data, string $name) : array
 {
     unset($data[$name]);
     return $data;

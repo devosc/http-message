@@ -38,7 +38,7 @@ trait Response
      */
     function getHeaderLine($name) : string
     {
-        return implode(', ', (array) ($this->getHeader($name) ?? ''));
+        return implode(', ', $this->getHeader($name));
     }
 
     /**
