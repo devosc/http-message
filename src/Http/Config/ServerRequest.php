@@ -25,7 +25,7 @@ trait ServerRequest
     }
 
     /**
-     * @return array|\Mvc5\Config\Model|mixed
+     * @return array
      */
     function getAttributes()
     {
@@ -83,21 +83,21 @@ trait ServerRequest
     }
 
     /**
-     * @param array $cookies
-     * @return mixed|self
-     */
-    function withCookieParams(array $cookies)
-    {
-        return $this->with(Arg::COOKIES, $cookies);
-    }
-
-    /**
      * @param $name
      * @return mixed|self
      */
     function withoutAttribute($name)
     {
         return $this->with(Arg::ATTRIBUTES, without($this->getAttributes(), $name));
+    }
+
+    /**
+     * @param array $cookies
+     * @return mixed|self
+     */
+    function withCookieParams(array $cookies)
+    {
+        return $this->with(Arg::COOKIES, $cookies);
     }
 
     /**
