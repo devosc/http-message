@@ -38,7 +38,7 @@ class ServerRequest
             $config[Arg::HEADERS] = new HttpHeaders($config[Arg::HEADERS]);
 
         !isset($config[Arg::URI]) && $config[Arg::URI] = new Uri(
-            ServerRequestFactory::marshalUriFromServer($server, \iterator_to_array($config[Arg::HEADERS]))
+            ServerRequestFactory::marshalUriFromServer($server, $config[Arg::HEADERS]->all())
         );
 
         !isset($config[Arg::COOKIES]) &&

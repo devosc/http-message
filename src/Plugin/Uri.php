@@ -6,6 +6,7 @@
 namespace Valar\Plugin;
 
 use Mvc5\Arg;
+use Mvc5\Http\Headers;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
@@ -24,12 +25,12 @@ class Uri
 
     /**
      * @param array $server
-     * @param array $headers
+     * @param Headers $headers
      * @return HttpUri
      */
-    static function uri(array $server, array $headers) : HttpUri
+    static function uri(array $server, Headers $headers) : HttpUri
     {
-        $uri = ServerRequestFactory::marshalUriFromServer($server, $headers);
+        $uri = ServerRequestFactory::marshalUriFromServer($server, $headers->all());
 
         return new HttpUri([
             'scheme' => $uri->getScheme(),
@@ -48,7 +49,7 @@ class Uri
     function __invoke() : \Closure
     {
         return function() {
-            return Uri::uri($this[Arg::SERVER], \iterator_to_array($this[Arg::HEADERS]));
+            return Uri::uri($this[Arg::SERVER], $this[Arg::HEADERS]);
         };
     }
 }
