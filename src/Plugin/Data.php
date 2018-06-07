@@ -15,11 +15,6 @@ class Data
     extends Shared
 {
     /**
-     * @var bool
-     */
-    protected $assoc = true;
-
-    /**
      * @param string $name
      */
     function __construct(string $name = 'data')
