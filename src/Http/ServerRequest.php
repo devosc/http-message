@@ -6,6 +6,7 @@
 namespace Valar\Http;
 
 use Mvc5\Arg;
+use Mvc5\Cookie\HttpCookies;
 use Mvc5\Http\HttpHeaders;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\PhpInputStream;
@@ -40,10 +41,15 @@ class ServerRequest
             ServerRequestFactory::marshalUriFromServer($server, \iterator_to_array($config[Arg::HEADERS]))
         );
 
+        !isset($config[Arg::COOKIES]) &&
+            $config[Arg::COOKIES] = new HttpCookies($_COOKIE);
+
+        is_array($config[Arg::COOKIES]) &&
+            $config[Arg::COOKIES] = new HttpCookies($config[Arg::COOKIES]);
+
         !isset($config[Arg::ARGS]) && $config[Arg::ARGS] = $_GET;
         !isset($config[Arg::ATTRIBUTES]) && $config[Arg::ATTRIBUTES] = [];
         !isset($config[Arg::BODY]) && $config[Arg::BODY] = new PhpInputStream;
-        !isset($config[Arg::COOKIES]) && $config[Arg::COOKIES] = $_COOKIE;
         !isset($config[Arg::DATA]) && $config[Arg::DATA] = $_POST;
         !isset($config[Arg::FILES]) && $config[Arg::FILES] = ServerRequestFactory::normalizeFiles($_FILES);
         !isset($config[Arg::METHOD]) && $config[Arg::METHOD] = $server['REQUEST_METHOD'] ?? 'GET';

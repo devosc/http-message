@@ -46,7 +46,7 @@ class ServerRequestTest
     /**
      *
      */
-    function test_get_cookie_params_from_traversable()
+    function test_get_cookie_params_from_http_cookies()
     {
         $request = new ServerRequest(['cookies' => new HttpCookies(['foo' => 'bar'])]);
 

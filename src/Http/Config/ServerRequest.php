@@ -6,6 +6,7 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Arg;
+use Mvc5\Cookie\HttpCookies;
 
 trait ServerRequest
 {
@@ -37,8 +38,7 @@ trait ServerRequest
      */
     function getCookieParams() : array
     {
-        /** @var array|\Traversable $cookies */
-        return is_array($cookies = $this[Arg::COOKIES] ?? []) ? $cookies : \iterator_to_array($cookies);
+        return $this[Arg::COOKIES]->all();
     }
 
     /**
@@ -98,7 +98,7 @@ trait ServerRequest
      */
     function withCookieParams(array $cookies)
     {
-        return $this->with(Arg::COOKIES, $cookies);
+        return $this->with(Arg::COOKIES, new HttpCookies($cookies));
     }
 
     /**
