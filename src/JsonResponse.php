@@ -7,6 +7,10 @@ namespace Valar;
 
 use Mvc5\Exception;
 
+use function json_encode;
+use function json_last_error;
+use function json_last_error_msg;
+
 class JsonResponse
     extends Response
 {

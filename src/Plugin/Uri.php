@@ -12,6 +12,9 @@ use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
 use Zend\Diactoros\ServerRequestFactory;
 
+use function rawurldecode;
+use function urldecode;
+
 class Uri
     extends Shared
 {

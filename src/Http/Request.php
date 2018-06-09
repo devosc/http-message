@@ -12,6 +12,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 use Zend\Diactoros\Stream;
 
+use function is_array;
+
 class Request
     extends Model
     implements \Mvc5\Http\Request, RequestInterface

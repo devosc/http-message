@@ -8,6 +8,10 @@ namespace Valar\Stream;
 use Mvc5\Exception;
 use Zend\Diactoros\Stream;
 
+use function json_encode;
+use function json_last_error;
+use function json_last_error_msg;
+
 class JsonStream
     extends Stream
 {

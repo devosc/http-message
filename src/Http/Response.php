@@ -11,6 +11,8 @@ use Mvc5\Model;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Stream;
 
+use function is_array;
+
 class Response
     extends Model
     implements \Mvc5\Http\Response, ResponseInterface

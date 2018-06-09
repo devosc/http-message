@@ -10,6 +10,9 @@ use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 
+use function array_keys;
+use function strpos;
+
 class AcceptsJson
     extends Shared
 {

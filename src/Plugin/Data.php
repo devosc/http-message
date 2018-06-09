@@ -11,6 +11,11 @@ use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
+use function json_decode;
+use function json_last_error;
+use function json_last_error_msg;
+use function strpos;
+
 class Data
     extends Shared
 {

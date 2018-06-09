@@ -8,6 +8,9 @@ namespace Valar\Http\Config;
 use Mvc5\Arg;
 use Psr\Http\Message\StreamInterface;
 
+use function implode;
+use function is_string;
+
 trait Response
 {
     /**

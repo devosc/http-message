@@ -12,6 +12,10 @@ use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\PhpInputStream;
 use Zend\Diactoros\ServerRequestFactory;
 
+use function is_array;
+use function strlen;
+use function substr;
+
 class ServerRequest
     extends Request
     implements ServerRequestInterface

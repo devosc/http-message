@@ -9,6 +9,9 @@ use Mvc5\Arg;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
+use function implode;
+use function is_string;
+
 trait Request
 {
     /**

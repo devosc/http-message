@@ -9,6 +9,9 @@ use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
+use function strlen;
+use function substr;
+
 class Version
     extends Shared
 {
