@@ -5,6 +5,8 @@
 
 namespace Valar;
 
+use Mvc5\Exception;
+
 class JsonResponse
     extends Response
 {
@@ -21,7 +23,17 @@ class JsonResponse
     function __construct($data, $status = 200, array $headers = [])
     {
         parent::__construct(
-            json_encode($data, static::ENCODE_OPTIONS), $status, $headers + ['content-type' => 'application/json']
+           $this->result(json_encode($data, static::ENCODE_OPTIONS)), $status, $headers + ['content-type' => 'application/json']
         );
+    }
+
+    /**
+     * @param $result
+     * @return string
+     */
+    protected function result($result) : string
+    {
+        return JSON_ERROR_NONE === json_last_error() ? $result :
+            Exception::invalidArgument('JSON Encode Error: ' . json_last_error_msg());
     }
 }
