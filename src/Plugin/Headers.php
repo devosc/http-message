@@ -9,7 +9,11 @@ use Mvc5\Arg;
 use Mvc5\Http\HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
-use Zend\Diactoros\ServerRequestFactory;
+
+use function Zend\Diactoros\ {
+    marshalHeadersFromSapi,
+    marshalUriFromSapi
+};
 
 class Headers
     extends Shared
@@ -28,7 +32,7 @@ class Headers
      */
     static function headersFromServer(array $server) : HttpHeaders
     {
-        $headers = ServerRequestFactory::marshalHeaders($server);
+        $headers = marshalHeadersFromSapi($server);
 
         !isset($headers[Arg::HOST]) && ($host = static::hostAndPortFromServer($server)) &&
             $headers[Arg::HOST] = $host;
@@ -42,11 +46,8 @@ class Headers
      */
     protected static function hostAndPortFromServer(array $server) : string
     {
-        $accumulator = (object) ['host' => '', 'port' => null];
-
-        ServerRequestFactory::marshalHostAndPortFromHeaders($accumulator, $server, []);
-
-        return  $accumulator->host . ($accumulator->port ? ':' . $accumulator->port : '');
+        $uri = marshalUriFromSapi($server, []);
+        return  $uri->getHost() . ($uri->getPort() ? ':' . $uri->getPort() : '');
     }
 
     /**

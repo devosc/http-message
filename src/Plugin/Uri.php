@@ -10,10 +10,10 @@ use Mvc5\Http\Headers;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Valar\Http\Uri as HttpUri;
-use Zend\Diactoros\ServerRequestFactory;
 
 use function rawurldecode;
 use function urldecode;
+use function Zend\Diactoros\marshalUriFromSapi;
 
 class Uri
     extends Shared
@@ -33,7 +33,7 @@ class Uri
      */
     static function uri(array $server, Headers $headers) : HttpUri
     {
-        $uri = ServerRequestFactory::marshalUriFromServer($server, $headers->all());
+        $uri = marshalUriFromSapi($server, $headers->all());
 
         return new HttpUri([
             'scheme' => $uri->getScheme(),
