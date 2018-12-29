@@ -18,7 +18,8 @@ use function Zend\Diactoros\ {
     marshalHeadersFromSapi,
     marshalUriFromSapi,
     normalizeServer,
-    normalizeUploadedFiles
+    normalizeUploadedFiles,
+    parseCookieHeader
 };
 
 class ServerRequest
@@ -50,7 +51,8 @@ class ServerRequest
             $config[Arg::URI] = new Uri(marshalUriFromSapi($server, $config[Arg::HEADERS]->all()));
 
         !isset($config[Arg::COOKIES]) &&
-            $config[Arg::COOKIES] = new HttpCookies($_COOKIE);
+            $config[Arg::COOKIES] = new HttpCookies(isset($config[Arg::HEADERS]['cookie']) ?
+                parseCookieHeader($config[Arg::HEADERS]['cookie']) : $_COOKIE);
 
         is_array($config[Arg::COOKIES]) &&
             $config[Arg::COOKIES] = new HttpCookies($config[Arg::COOKIES]);

@@ -56,6 +56,30 @@ class ServerRequestTest
     /**
      *
      */
+    function test_get_cookies_from_super_global()
+    {
+        $_COOKIE = ['foo' => 'bar'];
+
+        $request = new ServerRequest;
+
+        $this->assertEquals(['foo' => 'bar'], $request->getCookieParams());
+    }
+
+    /**
+     *
+     */
+    function test_get_cookies_from_factory()
+    {
+        $_COOKIE = ['baz' => 'bar'];
+
+        $request = new ServerRequest(['headers' => ['cookie' => 'baz=bat; foo.bar=foobar']]);
+
+        $this->assertEquals(['baz' => 'bat', 'foo.bar' => 'foobar'], $request->getCookieParams());
+    }
+
+    /**
+     *
+     */
     function test_get_parsed_body()
     {
         $request = new ServerRequest(['data' => ['foo' => 'bar']]);

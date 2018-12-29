@@ -5,9 +5,12 @@
 
 namespace Valar\Plugin;
 
+use Mvc5\Arg;
 use Mvc5\Cookie\HttpCookies;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+
+use function Zend\Diactoros\parseCookieHeader;
 
 class Cookies
     extends Shared
@@ -26,7 +29,9 @@ class Cookies
     function __invoke() : \Closure
     {
         return function() {
-            return new HttpCookies($_COOKIE);
+            return new HttpCookies(
+                isset($this[Arg::HEADERS]['cookie']) ? parseCookieHeader($this[Arg::HEADERS]['cookie']) : $_COOKIE
+            );
         };
     }
 }
