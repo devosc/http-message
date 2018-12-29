@@ -6,8 +6,9 @@
 namespace Valar\Test\Http;
 
 use Mvc5\Cookie\HttpCookies;
-use Valar\Http\ServerRequest;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\UploadedFileInterface;
+use Valar\Http\ServerRequest;
 
 class ServerRequestTest
     extends TestCase
@@ -115,6 +116,33 @@ class ServerRequestTest
         $request = new ServerRequest(['files' => ['foo' => 'bar']]);
 
         $this->assertEquals(['foo' => 'bar'], $request->getUploadedFiles());
+    }
+
+    /**
+     *
+     */
+    function test_get_uploaded_files_from_super_global()
+    {
+        $_FILES = [
+            'foo' => [
+                'name' => 'foo.txt',
+                'type' => 'text/plain',
+                'tmp_name' => '/tmp/f2hj0p',
+                'error' => 0,
+                'size' => 10,
+            ]
+        ];
+
+        $request = new ServerRequest;
+
+        /** @var UploadedFileInterface $file */
+        $file = $request->getUploadedFiles()['foo'];
+
+        $this->assertInstanceOf(UploadedFileInterface::class, $file);
+        $this->assertEquals('foo.txt', $file->getClientFilename());
+        $this->assertEquals('text/plain', $file->getClientMediaType());
+        $this->assertEquals(0, $file->getError());
+        $this->assertEquals(10, $file->getSize());
     }
 
     /**
