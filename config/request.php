@@ -4,6 +4,7 @@
  */
 
 use Mvc5\Plugin\NullValue;
+use Valar\Plugin\Authenticated;
 use Valar\Plugin\AcceptsJson;
 use Valar\Plugin\Args;
 use Valar\Plugin\Attributes;
@@ -23,6 +24,7 @@ use Valar\Plugin\UserAgent;
 use Valar\Plugin\Version;
 
 return [
+    'authenticated' => new Authenticated,
     'accepts_json' => new AcceptsJson,
     'args'           => new Args,
     //'attributes'     => new Attributes,

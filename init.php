@@ -17,6 +17,7 @@ include __DIR__ . '/src/Http/Uri.php';
 include __DIR__ . '/src/Plugin/AcceptsJson.php';
 include __DIR__ . '/src/Plugin/Args.php';
 include __DIR__ . '/src/Plugin/Attributes.php';
+include __DIR__ . '/src/Plugin/Authenticated.php';
 include __DIR__ . '/src/Plugin/Body.php';
 include __DIR__ . '/src/Plugin/ClientAddress.php';
 include __DIR__ . '/src/Plugin/Cookies.php';
