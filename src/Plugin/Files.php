@@ -18,7 +18,7 @@ class Files
     function __construct(string $name = 'files')
     {
         parent::__construct(
-            $name, new Call('@Zend\Diactoros\normalizeUploadedFiles', [new GlobalVar('_FILES')])
+            $name, new Call('@Laminas\Diactoros\normalizeUploadedFiles', [new GlobalVar('_FILES')])
         );
     }
 }

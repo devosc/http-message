@@ -18,7 +18,7 @@ class Server
     function __construct(string $name = 'server')
     {
         parent::__construct(
-            $name, new Call('@Zend\Diactoros\normalizeServer', [new GlobalVar('_SERVER')])
+            $name, new Call('@Laminas\Diactoros\normalizeServer', [new GlobalVar('_SERVER')])
         );
     }
 }

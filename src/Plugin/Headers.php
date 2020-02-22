@@ -10,7 +10,7 @@ use Mvc5\Http\HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-use function Zend\Diactoros\ {
+use function Laminas\Diactoros\ {
     marshalHeadersFromSapi,
     marshalUriFromSapi
 };

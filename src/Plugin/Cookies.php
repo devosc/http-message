@@ -10,7 +10,7 @@ use Mvc5\Cookie\HttpCookies;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-use function Zend\Diactoros\parseCookieHeader;
+use function Laminas\Diactoros\parseCookieHeader;
 
 class Cookies
     extends Shared

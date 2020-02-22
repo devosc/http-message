@@ -13,7 +13,7 @@ use Valar\Http\Uri as HttpUri;
 
 use function rawurldecode;
 use function urldecode;
-use function Zend\Diactoros\marshalUriFromSapi;
+use function Laminas\Diactoros\marshalUriFromSapi;
 
 class Uri
     extends Shared

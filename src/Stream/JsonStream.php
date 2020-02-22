@@ -5,8 +5,8 @@
 
 namespace Valar\Stream;
 
+use Laminas\Diactoros\Stream;
 use Mvc5\Exception;
-use Zend\Diactoros\Stream;
 
 use function json_encode;
 use function json_last_error;

@@ -11,13 +11,13 @@
     }
   ],
   "require": {
-    "php": "^7.1",
+    "php": "^7.4",
     "ext-json": "*",
-    "mvc5/mvc5": "10.*",
+    "mvc5/mvc5": "^11.0",
     "psr/http-factory": "^1.0",
     "psr/http-message": "^1.0",
-    "zendframework/zend-diactoros": "^2.1",
-    "symfony/http-foundation": "~4.0"
+    "laminas/laminas-diactoros": "^2.2",
+    "symfony/http-foundation": "^5.0"
   },
   "autoload": {
     "psr-4": {

@@ -5,11 +5,11 @@
 
 namespace Valar\Test\Http;
 
+use Laminas\Diactoros\PhpInputStream;
 use Mvc5\Http\HttpHeaders;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Valar\Http\Response;
-use Zend\Diactoros\PhpInputStream;
 
 class ResponseTest
     extends TestCase

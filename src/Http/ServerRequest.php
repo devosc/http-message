@@ -5,16 +5,16 @@
 
 namespace Valar\Http;
 
+use Laminas\Diactoros\PhpInputStream;
 use Mvc5\Arg;
 use Mvc5\Cookie\HttpCookies;
 use Mvc5\Http\HttpHeaders;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\PhpInputStream;
 
 use function is_array;
 use function strlen;
 use function substr;
-use function Zend\Diactoros\ {
+use function Laminas\Diactoros\ {
     marshalHeadersFromSapi,
     marshalUriFromSapi,
     normalizeServer,
