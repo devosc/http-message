@@ -20,7 +20,7 @@ class ServerRequest
     /**
      * @var Service|null
      */
-    protected $service;
+    protected ?Service $service;
 
     /**
      * @param array|\ArrayAccess $config
@@ -29,6 +29,6 @@ class ServerRequest
     function __construct($config = [], Service $service = null)
     {
         parent::__construct($config);
-        $service && $this->service = $service;
+        $this->service = $service;
     }
 }

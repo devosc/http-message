@@ -7,6 +7,7 @@ namespace Valar\Test\Plugin;
 
 use Mvc5\App;
 use Mvc5\Http\HttpHeaders;
+use Mvc5\Plugin\Scope;
 use Mvc5\Plugin\Value;
 use PHPUnit\Framework\TestCase;
 use Valar\Http\Uri as HttpUri;
@@ -27,10 +28,9 @@ class UriTest
             'server' => new Value([])
         ];
 
-        $config = new App(['services' => $plugins], null, true, true);
+        $app = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config);
-        $config->scope($request);
+        $request = (new App)(new Scope($app, ServerRequest::class));
 
         $this->assertInstanceOf(HttpUri::class, $request->getUri());
     }

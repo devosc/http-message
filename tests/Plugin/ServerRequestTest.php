@@ -28,11 +28,7 @@ class ServerRequestTest
      */
     function test_with_plugins()
     {
-        $plugin = ServerRequest::with([
-            'foo' => function(){
-                return 'bar';
-            }
-        ]);
+        $plugin = ServerRequest::with(['foo' => fn() => 'bar']);
 
         $app = new App(['services' => ['request' => $plugin]]);
 

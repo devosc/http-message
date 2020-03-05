@@ -6,9 +6,8 @@
 namespace Valar\Plugin;
 
 use Mvc5\App;
+use Mvc5\ArrayObject;
 use Mvc5\Arg;
-use Mvc5\Plugin\Link;
-use Mvc5\Plugin\Plugin;
 use Mvc5\Plugin\Scope;
 use Valar\ServerRequest as Request;
 
@@ -16,18 +15,20 @@ class ServerRequest
     extends Scope
 {
     /**
-     * @param array|mixed $plugins
+     * @param array $plugins
+     * @throws \Throwable
      */
     function __construct($plugins = [])
     {
         parent::__construct(
-            Request::class, [new Plugin(App::class, [[Arg::SERVICES => $plugins], null, true, true]), new Link]
+            new App(new ArrayObject([Arg::SERVICES => $plugins]), null, true, true), Request::class
         );
     }
 
     /**
      * @param array $options
      * @return ServerRequest
+     * @throws \Throwable
      */
     static function with(array $options = []) : self
     {

@@ -6,6 +6,7 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
+use Mvc5\Plugin\Scope;
 use Mvc5\Plugin\Value;
 use PHPUnit\Framework\TestCase;
 use Valar\Plugin\Version;
@@ -24,10 +25,9 @@ class VersionTest
             'version' => new Version
         ];
 
-        $config = new App(['services' => $plugins], null, true, true);
+        $app = new App(['services' => $plugins], null, true, true);
 
-        $request = new ServerRequest($config);
-        $config->scope($request);
+        $request = (new App)(new Scope($app, ServerRequest::class));
 
         $this->assertEquals('2.2', $request->getProtocolVersion());
     }
