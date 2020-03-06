@@ -7,10 +7,9 @@ namespace Valar\Test\Plugin;
 
 use Mvc5\App;
 use Mvc5\Http\HttpHeaders;
-use Mvc5\Plugin\Scope;
 use PHPUnit\Framework\TestCase;
 use Valar\Plugin\Cookies;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class CookiesTest
     extends TestCase
@@ -24,9 +23,7 @@ class CookiesTest
 
         $plugins = ['cookies' => new Cookies];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertEquals(['foo' => 'bar'], $request->getCookieParams());
     }
@@ -40,9 +37,7 @@ class CookiesTest
 
         $plugins = ['cookies' => new Cookies, 'headers' => new HttpHeaders(['cookie' => 'foo=baz; foo.bar=foobar'])];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertEquals(['foo' => 'baz', 'foo.bar' => 'foobar'], $request->getCookieParams());
     }

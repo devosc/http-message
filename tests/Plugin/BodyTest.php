@@ -6,11 +6,10 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
-use Mvc5\Plugin\Scope;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
 use Valar\Plugin\Body;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class BodyTest
     extends TestCase
@@ -22,9 +21,7 @@ class BodyTest
     {
         $plugins = ['body' => new Body];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertInstanceOf(StreamInterface::class, $request->getBody());
     }

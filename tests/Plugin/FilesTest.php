@@ -6,11 +6,10 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
-use Mvc5\Plugin\Scope;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UploadedFileInterface;
 use Valar\Plugin\Files;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class FilesTest
     extends TestCase
@@ -32,9 +31,7 @@ class FilesTest
 
         $plugins = ['files' => new Files];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         /** @var UploadedFileInterface $file */
         $file = $request->getUploadedFiles()['foo'];

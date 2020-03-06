@@ -6,11 +6,10 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
-use Mvc5\Plugin\Scope;
 use Mvc5\User\Model as User;
 use PHPUnit\Framework\TestCase;
 use Valar\Plugin\Authenticated;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class AuthenticateTest
     extends TestCase
@@ -25,9 +24,7 @@ class AuthenticateTest
             'user' => new User(['authenticated' => true])
         ];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertTrue($request->authenticated());
     }
@@ -42,9 +39,7 @@ class AuthenticateTest
             'user' => new User
         ];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertFalse($request->authenticated());
     }

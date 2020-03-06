@@ -6,10 +6,9 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
-use Mvc5\Plugin\Scope;
 use PHPUnit\Framework\TestCase;
 use Valar\Plugin\Method;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class MethodTest
     extends TestCase
@@ -21,9 +20,7 @@ class MethodTest
     {
         $plugins = ['method' => new Method];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertEquals('GET', $request->getMethod());
     }

@@ -6,10 +6,9 @@
 namespace Valar\Test\Plugin;
 
 use Mvc5\App;
-use Mvc5\Plugin\Scope;
 use PHPUnit\Framework\TestCase;
 use Valar\Plugin\Attributes;
-use Valar\ServerRequest;
+use Valar\Plugin\ServerRequest;
 
 class AttributesTest
     extends TestCase
@@ -21,9 +20,7 @@ class AttributesTest
     {
         $plugins = ['attributes' => new Attributes];
 
-        $app = new App(['services' => $plugins], null, true, true);
-
-        $request = (new App)(new Scope($app, ServerRequest::class));
+        $request = (new App)(new ServerRequest($plugins));
 
         $this->assertEquals([], $request->getAttributes());
 

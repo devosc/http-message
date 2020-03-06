@@ -16,13 +16,12 @@ class ServerRequest
 {
     /**
      * @param array $plugins
+     * @param string $class
      * @throws \Throwable
      */
-    function __construct($plugins = [])
+    function __construct($plugins = [], string $class = Request::class)
     {
-        parent::__construct(
-            new App(new ArrayObject([Arg::SERVICES => $plugins]), null, true, true), Request::class
-        );
+        parent::__construct($plugins, $class);
     }
 
     /**
