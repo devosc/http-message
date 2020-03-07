@@ -27,11 +27,8 @@ class Method
      */
     function __invoke() : \Closure
     {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return strtoupper(
+        return fn() => strtoupper(
                 $this[Arg::HEADERS]['X-HTTP-METHOD-OVERRIDE'] ?? ($this[Arg::SERVER]['REQUEST_METHOD'] ?? 'GET')
-            );
-        };
+        );
     }
 }

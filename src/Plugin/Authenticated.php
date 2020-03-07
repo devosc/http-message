@@ -25,8 +25,6 @@ class Authenticated
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return $this[Arg::USER][Arg::AUTHENTICATED] ?? false;
-        };
+        return fn() => $this[Arg::USER][Arg::AUTHENTICATED] ?? false;
     }
 }

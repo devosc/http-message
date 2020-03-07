@@ -24,9 +24,6 @@ class Session
      */
     function __invoke() : \Closure
     {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return $this->service ? $this->service->plugin('session') : null;
-        };
+        return fn() => $this->service ? $this->service->plugin('session') : null;
     }
 }

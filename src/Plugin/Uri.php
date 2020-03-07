@@ -51,8 +51,6 @@ class Uri
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return Uri::uri($this[Arg::SERVER], $this[Arg::HEADERS]);
-        };
+        return fn() => Uri::uri($this[Arg::SERVER], $this[Arg::HEADERS]);
     }
 }

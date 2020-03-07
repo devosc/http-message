@@ -25,8 +25,6 @@ class Body
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return new PhpInputStream;
-        };
+        return fn() => new PhpInputStream;
     }
 }

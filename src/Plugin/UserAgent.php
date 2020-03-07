@@ -25,9 +25,6 @@ class UserAgent
      */
     function __invoke() : \Closure
     {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return $this[Arg::SERVER]['HTTP_USER_AGENT'] ?? '';
-        };
+        return fn() => $this[Arg::SERVER]['HTTP_USER_AGENT'] ?? '';
     }
 }

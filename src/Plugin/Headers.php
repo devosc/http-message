@@ -55,8 +55,6 @@ class Headers
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return Headers::headersFromServer($this[Arg::SERVER]);
-        };
+        return fn() => Headers::headersFromServer($this[Arg::SERVER]);
     }
 }

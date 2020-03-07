@@ -28,10 +28,8 @@ class Cookies
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return new HttpCookies(
+        return fn() => new HttpCookies(
                 isset($this[Arg::HEADERS]['cookie']) ? parseCookieHeader($this[Arg::HEADERS]['cookie']) : $_COOKIE
-            );
-        };
+        );
     }
 }

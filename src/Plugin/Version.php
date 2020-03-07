@@ -28,9 +28,6 @@ class Version
      */
     function __invoke() : \Closure
     {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return substr($this[Arg::SERVER]['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
-        };
+        return fn() => substr($this[Arg::SERVER]['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
     }
 }

@@ -47,8 +47,6 @@ class AcceptsJson
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return AcceptsJson::match(AcceptsJson::header($this[Arg::HEADERS]['accept']));
-        };
+        return fn() => AcceptsJson::match(AcceptsJson::header($this[Arg::HEADERS]['accept']));
     }
 }

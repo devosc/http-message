@@ -62,9 +62,7 @@ class Data
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return Data::isJson($this[Arg::HEADERS]['content-type']) ?
+        return fn() => Data::isJson($this[Arg::HEADERS]['content-type']) ?
                 Data::decode((string) $this[Arg::BODY]) : new GlobalVar('_POST');
-        };
     }
 }

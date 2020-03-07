@@ -34,8 +34,6 @@ class ClientAddress
      */
     function __invoke() : \Closure
     {
-        return function() {
-            return ClientAddress::ipAddress($this[Arg::SERVER]);
-        };
+        return fn() => ClientAddress::ipAddress($this[Arg::SERVER]);
     }
 }

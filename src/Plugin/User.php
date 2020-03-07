@@ -24,9 +24,6 @@ class User
      */
     function __invoke() : \Closure
     {
-        return function() {
-            /** @var \Valar\ServerRequest $this */
-            return $this->service ? $this->service->plugin('user') : null;
-        };
+        return fn() => $this->service ? $this->service->plugin('user') : null;
     }
 }
