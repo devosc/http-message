@@ -5,9 +5,6 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\App;
-use Mvc5\ArrayObject;
-use Mvc5\Arg;
 use Mvc5\Plugin\Scope;
 use Valar\ServerRequest as Request;
 
