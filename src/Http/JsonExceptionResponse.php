@@ -6,15 +6,17 @@
 namespace Valar\Http;
 
 use Mvc5\Arg;
+use Throwable;
 
 class JsonExceptionResponse
     extends JsonResponse
 {
     /**
-     * @param \Throwable $exception
+     * @param Throwable $exception
      * @param bool|false $trace
+     * @throws Throwable
      */
-    function __construct(\Throwable $exception, bool $trace = false)
+    function __construct(Throwable $exception, bool $trace = false)
     {
         parent::__construct(
             $trace ? [

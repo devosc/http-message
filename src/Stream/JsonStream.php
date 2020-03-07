@@ -22,6 +22,7 @@ class JsonStream
 
     /**
      * @param $data
+     * @throws \Throwable
      */
     function __construct($data)
     {
@@ -33,6 +34,7 @@ class JsonStream
     /**
      * @param $result
      * @return string
+     * @throws \Throwable
      */
     protected function result($result) : string
     {

@@ -30,6 +30,7 @@ class Data
     /**
      * @param string $body
      * @return mixed
+     * @throws \Throwable
      */
     static function decode(string $body) : array
     {
@@ -48,6 +49,7 @@ class Data
     /**
      * @param $result
      * @return array
+     * @throws \Throwable
      */
     static function result($result) : array
     {

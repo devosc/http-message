@@ -15,6 +15,7 @@ class JsonResponse
      * @param $data
      * @param int $status
      * @param array $headers
+     * @throws \Throwable
      */
     function __construct($data, $status = 200, array $headers = [])
     {
