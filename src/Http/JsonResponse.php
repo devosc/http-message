@@ -5,8 +5,9 @@
 
 namespace Valar\Http;
 
-use Mvc5\Arg;
 use Valar\Stream\JsonStream;
+
+use const Mvc5\ { BODY, STATUS, HEADERS };
 
 class JsonResponse
     extends Response
@@ -20,9 +21,9 @@ class JsonResponse
     function __construct($data, $status = 200, array $headers = [])
     {
         parent::__construct([
-            Arg::BODY => new JsonStream($data),
-            Arg::STATUS => $status,
-            Arg::HEADERS => $headers + ['content-type' => 'application/json']
+            BODY => new JsonStream($data),
+            STATUS => $status,
+            HEADERS => $headers + ['content-type' => 'application/json']
         ]);
     }
 }

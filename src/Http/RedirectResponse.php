@@ -5,7 +5,7 @@
 
 namespace Valar\Http;
 
-use Mvc5\Arg;
+use const Mvc5\{ HEADERS, STATUS };
 
 class RedirectResponse
     extends Response
@@ -17,6 +17,6 @@ class RedirectResponse
      */
     function __construct($url, $status = 302, array $headers = [])
     {
-        parent::__construct([Arg::STATUS => $status, Arg::HEADERS => $headers + ['location' => (string) $url]]);
+        parent::__construct([STATUS => $status, HEADERS => $headers + ['location' => (string) $url]]);
     }
 }
