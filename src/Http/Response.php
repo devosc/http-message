@@ -28,12 +28,9 @@ class Response
      */
     function __construct($config = [])
     {
-        !isset($config[BODY]) &&
-            $config[BODY] = new Stream('php://memory', 'wb+');
+        $config[BODY] ??= new Stream('php://memory', 'wb+');
 
-        !isset($config[HEADERS]) &&
-            $config[HEADERS] = new HttpHeaders;
-
+        $config[HEADERS] ??= new HttpHeaders;
         is_array($config[HEADERS]) &&
             $config[HEADERS] = new HttpHeaders($config[HEADERS]);
 

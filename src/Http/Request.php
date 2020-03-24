@@ -13,7 +13,7 @@ use Psr\Http\Message\UriInterface;
 
 use function is_array;
 
-use const Mvc5\{ BODY, HEADERS, HOST, STATUS, URI };
+use const Mvc5\{ BODY, HEADERS, HOST, URI };
 
 class Request
     extends Model
@@ -29,11 +29,9 @@ class Request
      */
     function __construct($config = [])
     {
-        !isset($config[BODY]) &&
-            $config[BODY] = new Stream('php://temp', 'wb+');
+        $config[BODY] ??= new Stream('php://temp', 'wb+');
 
-        !isset($config[HEADERS]) &&
-            $config[HEADERS] = new HttpHeaders;
+        $config[HEADERS] ??= new HttpHeaders;
 
         is_array($config[HEADERS]) &&
             $config[HEADERS] = new HttpHeaders($config[HEADERS]);
