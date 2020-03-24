@@ -6,7 +6,6 @@
 namespace Valar\Http;
 
 use Laminas\Diactoros\PhpInputStream;
-use Mvc5\Arg;
 use Mvc5\Cookie\HttpCookies;
 use Mvc5\Http\HttpHeaders;
 use Psr\Http\Message\ServerRequestInterface;
@@ -22,6 +21,8 @@ use function Laminas\Diactoros\ {
     parseCookieHeader
 };
 
+use const Mvc5\{ ARGS, ATTRIBUTES, BODY, DATA, FILES, COOKIES, HEADERS, METHOD, SERVER, URI, VERSION };
+
 class ServerRequest
     extends Request
     implements ServerRequestInterface
@@ -36,34 +37,34 @@ class ServerRequest
      */
     function __construct($config = [])
     {
-        !isset($config[Arg::SERVER]) &&
-            $config[Arg::SERVER] = normalizeServer($_SERVER);
+        !isset($config[SERVER]) &&
+            $config[SERVER] = normalizeServer($_SERVER);
 
-        $server = $config[Arg::SERVER];
+        $server = $config[SERVER];
 
-        !isset($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = marshalHeadersFromSapi($server);
+        !isset($config[HEADERS]) &&
+            $config[HEADERS] = marshalHeadersFromSapi($server);
 
-        is_array($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = new HttpHeaders($config[Arg::HEADERS]);
+        is_array($config[HEADERS]) &&
+            $config[HEADERS] = new HttpHeaders($config[HEADERS]);
 
-        !isset($config[Arg::URI]) &&
-            $config[Arg::URI] = new Uri(marshalUriFromSapi($server, $config[Arg::HEADERS]->all()));
+        !isset($config[URI]) &&
+            $config[URI] = new Uri(marshalUriFromSapi($server, $config[HEADERS]->all()));
 
-        !isset($config[Arg::COOKIES]) &&
-            $config[Arg::COOKIES] = new HttpCookies(isset($config[Arg::HEADERS]['cookie']) ?
-                parseCookieHeader($config[Arg::HEADERS]['cookie']) : $_COOKIE);
+        !isset($config[COOKIES]) &&
+            $config[COOKIES] = new HttpCookies(isset($config[HEADERS]['cookie']) ?
+                parseCookieHeader($config[HEADERS]['cookie']) : $_COOKIE);
 
-        is_array($config[Arg::COOKIES]) &&
-            $config[Arg::COOKIES] = new HttpCookies($config[Arg::COOKIES]);
+        is_array($config[COOKIES]) &&
+            $config[COOKIES] = new HttpCookies($config[COOKIES]);
 
-        !isset($config[Arg::ARGS]) && $config[Arg::ARGS] = $_GET;
-        !isset($config[Arg::ATTRIBUTES]) && $config[Arg::ATTRIBUTES] = [];
-        !isset($config[Arg::BODY]) && $config[Arg::BODY] = new PhpInputStream;
-        !isset($config[Arg::DATA]) && $config[Arg::DATA] = $_POST;
-        !isset($config[Arg::FILES]) && $config[Arg::FILES] = normalizeUploadedFiles($_FILES);
-        !isset($config[Arg::METHOD]) && $config[Arg::METHOD] = $server['REQUEST_METHOD'] ?? 'GET';
-        !isset($config[Arg::VERSION]) && $config[Arg::VERSION] = substr($server['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
+        !isset($config[ARGS]) && $config[ARGS] = $_GET;
+        !isset($config[ATTRIBUTES]) && $config[ATTRIBUTES] = [];
+        !isset($config[BODY]) && $config[BODY] = new PhpInputStream;
+        !isset($config[DATA]) && $config[DATA] = $_POST;
+        !isset($config[FILES]) && $config[FILES] = normalizeUploadedFiles($_FILES);
+        !isset($config[METHOD]) && $config[METHOD] = $server['REQUEST_METHOD'] ?? 'GET';
+        !isset($config[VERSION]) && $config[VERSION] = substr($server['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
 
         parent::__construct($config);
     }

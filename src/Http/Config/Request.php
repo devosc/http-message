@@ -5,12 +5,13 @@
 
 namespace Valar\Http\Config;
 
-use Mvc5\Arg;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
 use function implode;
 use function is_string;
+
+use const Mvc5\{ BODY, HEADERS, HOST, METHOD, TARGET, URI, VERSION };
 
 trait Request
 {
@@ -81,8 +82,8 @@ trait Request
     function getRequestTarget() : string
     {
         /** @var UriInterface $uri */
-        return $this[Arg::TARGET] ?? (
-            ($uri = $this[Arg::URI]) ?
+        return $this[TARGET] ?? (
+            ($uri = $this[URI]) ?
                 ($uri->getPath() ? : '/') . ($uri->getQuery() ? '?' . $uri->getQuery() : '') : '/'
         );
     }
@@ -92,7 +93,7 @@ trait Request
      */
     function getUri() : UriInterface
     {
-        return $this[Arg::URI];
+        return $this[URI];
     }
 
     /**
@@ -101,7 +102,7 @@ trait Request
      */
     function hasHeader($name) : bool
     {
-        return isset($this[Arg::HEADERS][$name]);
+        return isset($this[HEADERS][$name]);
     }
 
     /**
@@ -110,7 +111,7 @@ trait Request
      */
     function withBody(StreamInterface $body)
     {
-        return $this->with(Arg::BODY, $body);
+        return $this->with(BODY, $body);
     }
 
     /**
@@ -120,7 +121,7 @@ trait Request
      */
     function withAddedHeader($name, $value)
     {
-        $header = $this[Arg::HEADERS][$name] ?? null;
+        $header = $this[HEADERS][$name] ?? null;
 
         if (null === $header) {
             return $this->withHeader($name, $value);
@@ -140,7 +141,7 @@ trait Request
      */
     function withHeader($name, $value)
     {
-        return $this->with(Arg::HEADERS, $this->headers()->with($name, $value));
+        return $this->with(HEADERS, $this->headers()->with($name, $value));
     }
 
     /**
@@ -149,7 +150,7 @@ trait Request
      */
     function withoutHeader($name)
     {
-        return $this->with(Arg::HEADERS, $this->headers()->without($name));
+        return $this->with(HEADERS, $this->headers()->without($name));
     }
 
     /**
@@ -158,7 +159,7 @@ trait Request
      */
     function withMethod($method)
     {
-        return $this->with(Arg::METHOD, $method);
+        return $this->with(METHOD, $method);
     }
 
     /**
@@ -167,7 +168,7 @@ trait Request
      */
     function withProtocolVersion($version)
     {
-        return $this->with(Arg::VERSION, $version);
+        return $this->with(VERSION, $version);
     }
 
     /**
@@ -176,7 +177,7 @@ trait Request
      */
     function withRequestTarget($requestTarget)
     {
-        return $this->with(Arg::TARGET, $requestTarget);
+        return $this->with(TARGET, $requestTarget);
     }
 
     /**
@@ -188,12 +189,12 @@ trait Request
     {
         $host = $uri->getHost();
 
-        if (!$host || ($preserveHost && $this->hasHeader(Arg::HOST))) {
-            return $this->with(Arg::URI, $uri);
+        if (!$host || ($preserveHost && $this->hasHeader(HOST))) {
+            return $this->with(URI, $uri);
         }
 
-        $headers = $this->headers()->with(Arg::HOST, $host . (($port = $uri->getPort()) ? ':' . $port : ''));
+        $headers = $this->headers()->with(HOST, $host . (($port = $uri->getPort()) ? ':' . $port : ''));
 
-        return $this->with([Arg::HEADERS => $headers, Arg::URI => $uri]);
+        return $this->with([HEADERS => $headers, URI => $uri]);
     }
 }

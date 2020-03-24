@@ -5,7 +5,7 @@
 
 namespace Valar\Http\Config;
 
-use Mvc5\Arg;
+use const Mvc5\{ FRAGMENT, HOST, QUERY, PATH, PASS, PORT, SCHEME, USER };
 
 trait Uri
 {
@@ -90,7 +90,7 @@ trait Uri
      */
     function withFragment($fragment)
     {
-        return $this->with(Arg::FRAGMENT, $fragment);
+        return $this->with(FRAGMENT, $fragment);
     }
 
     /**
@@ -99,7 +99,7 @@ trait Uri
      */
     function withHost($host)
     {
-        return $this->with(Arg::HOST, $host);
+        return $this->with(HOST, $host);
     }
 
     /**
@@ -108,7 +108,7 @@ trait Uri
      */
     function withPath($path)
     {
-        return $this->with(Arg::PATH, $path);
+        return $this->with(PATH, $path);
     }
 
     /**
@@ -117,7 +117,7 @@ trait Uri
      */
     function withPort($port)
     {
-        return $this->with(Arg::PORT, $port);
+        return $this->with(PORT, $port);
     }
 
     /**
@@ -126,7 +126,7 @@ trait Uri
      */
     function withQuery($query)
     {
-        return $this->with(Arg::QUERY, $query);
+        return $this->with(QUERY, $query);
     }
 
     /**
@@ -135,7 +135,7 @@ trait Uri
      */
     function withScheme($scheme)
     {
-        return $this->with(Arg::SCHEME, $scheme);
+        return $this->with(SCHEME, $scheme);
     }
 
     /**
@@ -145,6 +145,6 @@ trait Uri
      */
     function withUserInfo($user, $password = null)
     {
-        return $this->with([Arg::USER => $user, Arg::PASS => $password]);
+        return $this->with([USER => $user, PASS => $password]);
     }
 }

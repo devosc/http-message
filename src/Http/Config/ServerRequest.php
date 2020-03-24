@@ -5,8 +5,9 @@
 
 namespace Valar\Http\Config;
 
-use Mvc5\Arg;
 use Mvc5\Cookie\HttpCookies;
+
+use const Mvc5\{ ARGS, ATTRIBUTES, COOKIES, DATA, FILES, SERVER };
 
 trait ServerRequest
 {
@@ -22,7 +23,7 @@ trait ServerRequest
      */
     function getAttribute($name, $default = null)
     {
-        return $this[Arg::ATTRIBUTES][$name] ?? $default;
+        return $this[ATTRIBUTES][$name] ?? $default;
     }
 
     /**
@@ -30,7 +31,7 @@ trait ServerRequest
      */
     function getAttributes() : array
     {
-        return $this[Arg::ATTRIBUTES] ?? [];
+        return $this[ATTRIBUTES] ?? [];
     }
 
     /**
@@ -38,7 +39,7 @@ trait ServerRequest
      */
     function getCookieParams() : array
     {
-        return $this[Arg::COOKIES]->all();
+        return $this[COOKIES]->all();
     }
 
     /**
@@ -46,7 +47,7 @@ trait ServerRequest
      */
     function getParsedBody()
     {
-        return $this[Arg::DATA];
+        return $this[DATA];
     }
 
     /**
@@ -54,7 +55,7 @@ trait ServerRequest
      */
     function getQueryParams() : array
     {
-        return $this[Arg::ARGS] ?? [];
+        return $this[ARGS] ?? [];
     }
 
     /**
@@ -62,7 +63,7 @@ trait ServerRequest
      */
     function getServerParams() : array
     {
-        return $this[Arg::SERVER] ?? [];
+        return $this[SERVER] ?? [];
     }
 
     /**
@@ -70,7 +71,7 @@ trait ServerRequest
      */
     function getUploadedFiles() : array
     {
-        return $this[Arg::FILES] ?? [];
+        return $this[FILES] ?? [];
     }
 
     /**
@@ -80,7 +81,7 @@ trait ServerRequest
      */
     function withAttribute($name, $value)
     {
-        return $this->with(Arg::ATTRIBUTES, with($this->getAttributes(), $name, $value));
+        return $this->with(ATTRIBUTES, with($this->getAttributes(), $name, $value));
     }
 
     /**
@@ -89,7 +90,7 @@ trait ServerRequest
      */
     function withoutAttribute($name)
     {
-        return $this->with(Arg::ATTRIBUTES, without($this->getAttributes(), $name));
+        return $this->with(ATTRIBUTES, without($this->getAttributes(), $name));
     }
 
     /**
@@ -98,7 +99,7 @@ trait ServerRequest
      */
     function withCookieParams(array $cookies)
     {
-        return $this->with(Arg::COOKIES, new HttpCookies($cookies));
+        return $this->with(COOKIES, new HttpCookies($cookies));
     }
 
     /**
@@ -107,7 +108,7 @@ trait ServerRequest
      */
     function withParsedBody($data)
     {
-        return $this->with(Arg::DATA, $data);
+        return $this->with(DATA, $data);
     }
 
     /**
@@ -116,7 +117,7 @@ trait ServerRequest
      */
     function withQueryParams(array $query)
     {
-        return $this->with(Arg::ARGS, $query);
+        return $this->with(ARGS, $query);
     }
 
     /**
@@ -125,7 +126,7 @@ trait ServerRequest
      */
     function withUploadedFiles(array $uploadedFiles)
     {
-        return $this->with(Arg::FILES, $uploadedFiles);
+        return $this->with(FILES, $uploadedFiles);
     }
 }
 

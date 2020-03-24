@@ -6,13 +6,14 @@
 namespace Valar\Http;
 
 use Laminas\Diactoros\Stream;
-use Mvc5\Arg;
 use Mvc5\Http\HttpHeaders;
 use Mvc5\Model;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\UriInterface;
 
 use function is_array;
+
+use const Mvc5\{ BODY, HEADERS, HOST, STATUS, URI };
 
 class Request
     extends Model
@@ -28,21 +29,21 @@ class Request
      */
     function __construct($config = [])
     {
-        !isset($config[Arg::BODY]) &&
-            $config[Arg::BODY] = new Stream('php://temp', 'wb+');
+        !isset($config[BODY]) &&
+            $config[BODY] = new Stream('php://temp', 'wb+');
 
-        !isset($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = new HttpHeaders;
+        !isset($config[HEADERS]) &&
+            $config[HEADERS] = new HttpHeaders;
 
-        is_array($config[Arg::HEADERS]) &&
-            $config[Arg::HEADERS] = new HttpHeaders($config[Arg::HEADERS]);
+        is_array($config[HEADERS]) &&
+            $config[HEADERS] = new HttpHeaders($config[HEADERS]);
 
-        isset($config[Arg::URI]) && !($config[Arg::URI] instanceof UriInterface) &&
-            $config[Arg::URI] = new Uri($config[Arg::URI]);
+        isset($config[URI]) && !($config[URI] instanceof UriInterface) &&
+            $config[URI] = new Uri($config[URI]);
 
-        !isset($config[Arg::HEADERS][Arg::HOST]) && ($uri = $config[Arg::URI] ?? null) && ($host = $uri->getHost()) &&
-            $config[Arg::HEADERS] = $config[Arg::HEADERS]->with(
-                Arg::HOST, $host . ($uri->getPort() ? ':' . $uri->getPort() : '')
+        !isset($config[HEADERS][HOST]) && ($uri = $config[URI] ?? null) && ($host = $uri->getHost()) &&
+            $config[HEADERS] = $config[HEADERS]->with(
+                HOST, $host . ($uri->getPort() ? ':' . $uri->getPort() : '')
             );
 
         parent::__construct($config);

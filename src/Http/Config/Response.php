@@ -5,11 +5,12 @@
 
 namespace Valar\Http\Config;
 
-use Mvc5\Arg;
 use Psr\Http\Message\StreamInterface;
 
 use function implode;
 use function is_string;
+
+use const Mvc5\{ BODY, HEADERS, REASON, STATUS, VERSION };
 
 trait Response
 {
@@ -88,7 +89,7 @@ trait Response
      */
     function hasHeader($name) : bool
     {
-        return isset($this[Arg::HEADERS][$name]);
+        return isset($this[HEADERS][$name]);
     }
 
     /**
@@ -97,7 +98,7 @@ trait Response
      */
     function withBody(StreamInterface $body)
     {
-        return $this->with(Arg::BODY, $body);
+        return $this->with(BODY, $body);
     }
 
     /**
@@ -107,7 +108,7 @@ trait Response
      */
     function withAddedHeader($name, $value)
     {
-        $header = $this[Arg::HEADERS][$name] ?? null;
+        $header = $this[HEADERS][$name] ?? null;
 
         if (null === $header) {
             return $this->withHeader($name, $value);
@@ -127,7 +128,7 @@ trait Response
      */
     function withHeader($name, $value)
     {
-        return $this->with(Arg::HEADERS, $this->headers()->with($name, $value));
+        return $this->with(HEADERS, $this->headers()->with($name, $value));
     }
 
     /**
@@ -136,7 +137,7 @@ trait Response
      */
     function withoutHeader($name)
     {
-        return $this->with(Arg::HEADERS, $this->headers()->without($name));
+        return $this->with(HEADERS, $this->headers()->without($name));
     }
 
     /**
@@ -145,7 +146,7 @@ trait Response
      */
     function withProtocolVersion($version)
     {
-        return $this->with(Arg::VERSION, $version);
+        return $this->with(VERSION, $version);
     }
 
     /**
@@ -155,6 +156,6 @@ trait Response
      */
     function withStatus($code, $reasonPhrase = '')
     {
-        return $this->with([Arg::STATUS => $code, Arg::REASON => $reasonPhrase]);
+        return $this->with([STATUS => $code, REASON => $reasonPhrase]);
     }
 }
