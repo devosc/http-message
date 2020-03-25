@@ -5,7 +5,7 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
+use Closure;
 use Mvc5\Http\HttpHeaders;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
@@ -15,13 +15,15 @@ use function Laminas\Diactoros\ {
     marshalUriFromSapi
 };
 
+use const Mvc5\{ HEADERS, HOST, SERVER };
+
 class Headers
     extends Shared
 {
     /**
      * @param string $name
      */
-    function __construct(string $name = 'headers')
+    function __construct(string $name = HEADERS)
     {
         parent::__construct($name, new ScopedCall($this));
     }
@@ -34,8 +36,8 @@ class Headers
     {
         $headers = marshalHeadersFromSapi($server);
 
-        !isset($headers[Arg::HOST]) && ($host = static::hostAndPortFromServer($server)) &&
-            $headers[Arg::HOST] = $host;
+        !isset($headers[HOST]) && ($host = static::hostAndPortFromServer($server)) &&
+            $headers[HOST] = $host;
 
         return new HttpHeaders($headers);
     }
@@ -51,10 +53,10 @@ class Headers
     }
 
     /**
-     * @return \Closure
+     * @return Closure
      */
-    function __invoke() : \Closure
+    function __invoke() : Closure
     {
-        return fn() => Headers::headersFromServer($this[Arg::SERVER]);
+        return fn() => Headers::headersFromServer($this[SERVER]);
     }
 }

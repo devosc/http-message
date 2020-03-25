@@ -5,9 +5,11 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
+use Closure;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+
+use const Mvc5\{ AUTHENTICATED, USER };
 
 class Authenticated
     extends Shared
@@ -21,10 +23,10 @@ class Authenticated
     }
 
     /**
-     * @return \Closure
+     * @return Closure
      */
-    function __invoke() : \Closure
+        function __invoke() : Closure
     {
-        return fn() => $this[Arg::USER][Arg::AUTHENTICATED] ?? false;
+        return fn() => $this[USER][AUTHENTICATED] ?? false;
     }
 }

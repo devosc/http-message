@@ -5,12 +5,13 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Cookie\HttpCookies;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
 use function Laminas\Diactoros\parseCookieHeader;
+
+use const Mvc5\HEADERS;
 
 class Cookies
     extends Shared
@@ -29,7 +30,7 @@ class Cookies
     function __invoke() : \Closure
     {
         return fn() => new HttpCookies(
-                isset($this[Arg::HEADERS]['cookie']) ? parseCookieHeader($this[Arg::HEADERS]['cookie']) : $_COOKIE
+                isset($this[HEADERS]['cookie']) ? parseCookieHeader($this[HEADERS]['cookie']) : $_COOKIE
         );
     }
 }

@@ -5,9 +5,10 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+
+use const Mvc5\SERVER;
 
 class ClientAddress
     extends Shared
@@ -34,6 +35,6 @@ class ClientAddress
      */
     function __invoke() : \Closure
     {
-        return fn() => ClientAddress::ipAddress($this[Arg::SERVER]);
+        return fn() => ClientAddress::ipAddress($this[SERVER]);
     }
 }

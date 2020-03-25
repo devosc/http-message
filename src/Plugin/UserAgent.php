@@ -5,9 +5,11 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
+use Closure;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+
+use const Mvc5\SERVER;
 
 class UserAgent
     extends Shared
@@ -21,10 +23,10 @@ class UserAgent
     }
 
     /**
-     * @return \Closure
+     * @return Closure
      */
-    function __invoke() : \Closure
+    function __invoke() : Closure
     {
-        return fn() => $this[Arg::SERVER]['HTTP_USER_AGENT'] ?? '';
+        return fn() => $this[SERVER]['HTTP_USER_AGENT'] ?? '';
     }
 }

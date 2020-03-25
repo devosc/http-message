@@ -5,7 +5,6 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Exception;
 use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\ScopedCall;
@@ -15,6 +14,8 @@ use function json_decode;
 use function json_last_error;
 use function json_last_error_msg;
 use function strpos;
+
+use const Mvc5\{ BODY, HEADERS };
 
 class Data
     extends Shared
@@ -62,7 +63,7 @@ class Data
      */
     function __invoke() : \Closure
     {
-        return fn() => Data::isJson($this[Arg::HEADERS]['content-type']) ?
-                Data::decode((string) $this[Arg::BODY]) : new GlobalVar('_POST');
+        return fn() => Data::isJson($this[HEADERS]['content-type']) ?
+                Data::decode((string) $this[BODY]) : new GlobalVar('_POST');
     }
 }

@@ -5,12 +5,13 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
 use function strlen;
 use function substr;
+
+use const Mvc5\SERVER;
 
 class Version
     extends Shared
@@ -28,6 +29,6 @@ class Version
      */
     function __invoke() : \Closure
     {
-        return fn() => substr($this[Arg::SERVER]['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
+        return fn() => substr($this[SERVER]['SERVER_PROTOCOL'] ?? 'HTTP/1.1', strlen('HTTP/'));
     }
 }

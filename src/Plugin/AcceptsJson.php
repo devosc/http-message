@@ -5,13 +5,14 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 
 use function array_keys;
 use function strpos;
+
+use const Mvc5\HEADERS;
 
 class AcceptsJson
     extends Shared
@@ -47,6 +48,6 @@ class AcceptsJson
      */
     function __invoke() : \Closure
     {
-        return fn() => AcceptsJson::match(AcceptsJson::header($this[Arg::HEADERS]['accept']));
+        return fn() => AcceptsJson::match(AcceptsJson::header($this[HEADERS]['accept']));
     }
 }

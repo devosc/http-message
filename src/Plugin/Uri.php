@@ -5,7 +5,6 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
 use Mvc5\Http\Headers;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
@@ -14,6 +13,8 @@ use Valar\Http\Uri as HttpUri;
 use function rawurldecode;
 use function urldecode;
 use function Laminas\Diactoros\marshalUriFromSapi;
+
+use const Mvc5\{ HEADERS, SERVER };
 
 class Uri
     extends Shared
@@ -51,6 +52,6 @@ class Uri
      */
     function __invoke() : \Closure
     {
-        return fn() => Uri::uri($this[Arg::SERVER], $this[Arg::HEADERS]);
+        return fn() => Uri::uri($this[SERVER], $this[HEADERS]);
     }
 }

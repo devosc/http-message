@@ -5,9 +5,11 @@
 
 namespace Valar\Plugin;
 
-use Mvc5\Arg;
+use Closure;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
+
+use const Mvc5\{ PATH, QUERY, URI };
 
 class RequestTarget
     extends Shared
@@ -21,15 +23,15 @@ class RequestTarget
     }
 
     /**
-     * @return \Closure
+     * @return Closure
      */
-    function __invoke() : \Closure
+    function __invoke() : Closure
     {
         return function() {
             /** @var \Valar\ServerRequest $this */
-            $uri = $this[Arg::URI];
-            $query = $uri[Arg::QUERY] ?? '';
-            $path = $uri[Arg::PATH] ?? '';
+            $uri = $this[URI];
+            $query = $uri[QUERY] ?? '';
+            $path = $uri[PATH] ?? '';
             return ($path ?: '/') . ($query ? '?' . $query : '');
         };
     }
