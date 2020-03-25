@@ -5,6 +5,7 @@
 
 namespace Valar\Http\Config;
 
+use Mvc5\Http;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 
@@ -18,7 +19,7 @@ trait Request
     /**
      *
      */
-    use \Mvc5\Http\Config\Request;
+    use Http\Config\Request;
 
     /**
      * @return StreamInterface|mixed
@@ -107,9 +108,9 @@ trait Request
 
     /**
      * @param StreamInterface $body
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withBody(StreamInterface $body)
+    function withBody(StreamInterface $body) : Http\Request
     {
         return $this->with(BODY, $body);
     }
@@ -117,9 +118,9 @@ trait Request
     /**
      * @param $name
      * @param $value
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withAddedHeader($name, $value)
+    function withAddedHeader($name, $value) : Http\Request
     {
         $header = $this[HEADERS][$name] ?? null;
 
@@ -137,45 +138,45 @@ trait Request
     /**
      * @param $name
      * @param $value
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withHeader($name, $value)
+    function withHeader($name, $value) : Http\Request
     {
         return $this->with(HEADERS, $this->headers()->with($name, $value));
     }
 
     /**
      * @param $name
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withoutHeader($name)
+    function withoutHeader($name) : Http\Request
     {
         return $this->with(HEADERS, $this->headers()->without($name));
     }
 
     /**
      * @param $method
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withMethod($method)
+    function withMethod($method) : Http\Request
     {
         return $this->with(METHOD, $method);
     }
 
     /**
      * @param $version
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withProtocolVersion($version)
+    function withProtocolVersion($version) : Http\Request
     {
         return $this->with(VERSION, $version);
     }
 
     /**
      * @param $requestTarget
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withRequestTarget($requestTarget)
+    function withRequestTarget($requestTarget) : Http\Request
     {
         return $this->with(TARGET, $requestTarget);
     }
@@ -183,9 +184,9 @@ trait Request
     /**
      * @param UriInterface $uri
      * @param bool $preserveHost
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withUri(UriInterface $uri, $preserveHost = false)
+    function withUri(UriInterface $uri, $preserveHost = false) : Http\Request
     {
         $host = $uri->getHost();
 

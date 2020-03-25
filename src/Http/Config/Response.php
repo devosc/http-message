@@ -5,6 +5,7 @@
 
 namespace Valar\Http\Config;
 
+use Mvc5\Http;
 use Psr\Http\Message\StreamInterface;
 
 use function implode;
@@ -17,10 +18,10 @@ trait Response
     /**
      *
      */
-    use \Mvc5\Http\Config\Response;
+    use Http\Config\Response;
 
     /**
-     * @return mixed|StreamInterface
+     * @return StreamInterface|mixed
      */
     function getBody()
     {
@@ -94,9 +95,9 @@ trait Response
 
     /**
      * @param StreamInterface $body
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withBody(StreamInterface $body)
+    function withBody(StreamInterface $body) : Http\Response
     {
         return $this->with(BODY, $body);
     }
@@ -104,9 +105,9 @@ trait Response
     /**
      * @param $name
      * @param $value
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withAddedHeader($name, $value)
+    function withAddedHeader($name, $value) : Http\Response
     {
         $header = $this[HEADERS][$name] ?? null;
 
@@ -124,27 +125,27 @@ trait Response
     /**
      * @param $name
      * @param $value
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withHeader($name, $value)
+    function withHeader($name, $value) : Http\Response
     {
         return $this->with(HEADERS, $this->headers()->with($name, $value));
     }
 
     /**
      * @param $name
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withoutHeader($name)
+    function withoutHeader($name) : Http\Response
     {
         return $this->with(HEADERS, $this->headers()->without($name));
     }
 
     /**
      * @param $version
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withProtocolVersion($version)
+    function withProtocolVersion($version) : Http\Response
     {
         return $this->with(VERSION, $version);
     }
@@ -152,9 +153,9 @@ trait Response
     /**
      * @param $code
      * @param string $reasonPhrase
-     * @return mixed|self
+     * @return Http\Response|mixed
      */
-    function withStatus($code, $reasonPhrase = '')
+    function withStatus($code, $reasonPhrase = '') : Http\Response
     {
         return $this->with([STATUS => $code, REASON => $reasonPhrase]);
     }

@@ -6,6 +6,7 @@
 namespace Valar\Http\Config;
 
 use Mvc5\Cookie\HttpCookies;
+use Mvc5\Http;
 
 use const Mvc5\{ ARGS, ATTRIBUTES, COOKIES, DATA, FILES, SERVER };
 
@@ -77,54 +78,54 @@ trait ServerRequest
     /**
      * @param $name
      * @param $value
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withAttribute($name, $value)
+    function withAttribute($name, $value) : Http\Request
     {
         return $this->with(ATTRIBUTES, with($this->getAttributes(), $name, $value));
     }
 
     /**
      * @param $name
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withoutAttribute($name)
+    function withoutAttribute($name) : Http\Request
     {
         return $this->with(ATTRIBUTES, without($this->getAttributes(), $name));
     }
 
     /**
      * @param array $cookies
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withCookieParams(array $cookies)
+    function withCookieParams(array $cookies) : Http\Request
     {
         return $this->with(COOKIES, new HttpCookies($cookies));
     }
 
     /**
      * @param $data
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withParsedBody($data)
+    function withParsedBody($data) : Http\Request
     {
         return $this->with(DATA, $data);
     }
 
     /**
      * @param array $query
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withQueryParams(array $query)
+    function withQueryParams(array $query) : Http\Request
     {
         return $this->with(ARGS, $query);
     }
 
     /**
      * @param array $uploadedFiles
-     * @return mixed|self
+     * @return Http\Request|mixed
      */
-    function withUploadedFiles(array $uploadedFiles)
+    function withUploadedFiles(array $uploadedFiles) : Http\Request
     {
         return $this->with(FILES, $uploadedFiles);
     }

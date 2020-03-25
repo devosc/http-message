@@ -5,6 +5,8 @@
 
 namespace Valar\Http\Config;
 
+use Mvc5\Http;
+
 use const Mvc5\{ FRAGMENT, HOST, QUERY, PATH, PASS, PORT, SCHEME, USER };
 
 trait Uri
@@ -12,7 +14,7 @@ trait Uri
     /**
      *
      */
-    use \Mvc5\Http\Config\Uri;
+    use Http\Config\Uri;
 
     /**
      * @return string
@@ -86,54 +88,54 @@ trait Uri
 
     /**
      * @param string $fragment
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withFragment($fragment)
+    function withFragment($fragment) : Http\Uri
     {
         return $this->with(FRAGMENT, $fragment);
     }
 
     /**
      * @param $host
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withHost($host)
+    function withHost($host) : Http\Uri
     {
         return $this->with(HOST, $host);
     }
 
     /**
      * @param $path
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withPath($path)
+    function withPath($path) : Http\Uri
     {
         return $this->with(PATH, $path);
     }
 
     /**
      * @param $port
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withPort($port)
+    function withPort($port) : Http\Uri
     {
         return $this->with(PORT, $port);
     }
 
     /**
      * @param $query
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withQuery($query)
+    function withQuery($query) : Http\Uri
     {
         return $this->with(QUERY, $query);
     }
 
     /**
      * @param $scheme
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withScheme($scheme)
+    function withScheme($scheme) : Http\Uri
     {
         return $this->with(SCHEME, $scheme);
     }
@@ -141,9 +143,9 @@ trait Uri
     /**
      * @param $user
      * @param null $password
-     * @return mixed|self
+     * @return Http\Uri|mixed
      */
-    function withUserInfo($user, $password = null)
+    function withUserInfo($user, $password = null) : Http\Uri
     {
         return $this->with([USER => $user, PASS => $password]);
     }
