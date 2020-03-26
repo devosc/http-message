@@ -9,7 +9,7 @@ use Laminas\Diactoros\PhpInputStream;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Body
+final class Body
     extends Shared
 {
     /**

@@ -14,7 +14,7 @@ use function strpos;
 
 use const Mvc5\HEADERS;
 
-class AcceptsJson
+final class AcceptsJson
     extends Shared
 {
     /**

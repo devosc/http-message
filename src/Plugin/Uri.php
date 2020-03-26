@@ -16,7 +16,7 @@ use function Laminas\Diactoros\marshalUriFromSapi;
 
 use const Mvc5\{ HEADERS, SERVER };
 
-class Uri
+final class Uri
     extends Shared
 {
     /**

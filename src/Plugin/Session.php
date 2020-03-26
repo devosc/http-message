@@ -8,7 +8,7 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\ScopedCall;
 use Mvc5\Plugin\Shared;
 
-class Session
+final class Session
     extends Shared
 {
     /**

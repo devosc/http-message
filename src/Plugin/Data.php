@@ -17,7 +17,7 @@ use function strpos;
 
 use const Mvc5\{ BODY, HEADERS };
 
-class Data
+final class Data
     extends Shared
 {
     /**

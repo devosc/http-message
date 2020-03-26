@@ -11,7 +11,7 @@ use Mvc5\Plugin\Shared;
 
 use const Mvc5\SERVER;
 
-class UserAgent
+final class UserAgent
     extends Shared
 {
     /**

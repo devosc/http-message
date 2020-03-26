@@ -17,7 +17,7 @@ use function Laminas\Diactoros\ {
 
 use const Mvc5\{ HEADERS, HOST, SERVER };
 
-class Headers
+final class Headers
     extends Shared
 {
     /**

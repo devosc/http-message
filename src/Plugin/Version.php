@@ -13,7 +13,7 @@ use function substr;
 
 use const Mvc5\SERVER;
 
-class Version
+final class Version
     extends Shared
 {
     /**

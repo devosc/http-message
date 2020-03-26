@@ -9,7 +9,7 @@ use Mvc5\Plugin\Call;
 use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Shared;
 
-class Server
+final class Server
     extends Shared
 {
     /**

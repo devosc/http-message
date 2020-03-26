@@ -13,7 +13,7 @@ use function Laminas\Diactoros\parseCookieHeader;
 
 use const Mvc5\HEADERS;
 
-class Cookies
+final class Cookies
     extends Shared
 {
     /**

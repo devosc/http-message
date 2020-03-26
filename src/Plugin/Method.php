@@ -12,7 +12,7 @@ use function strtoupper;
 
 use const Mvc5\{ HEADERS, SERVER };
 
-class Method
+final class Method
     extends Shared
 {
     /**

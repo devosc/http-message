@@ -11,7 +11,7 @@ use Mvc5\Plugin\Shared;
 
 use const Mvc5\{ AUTHENTICATED, USER };
 
-class Authenticated
+final class Authenticated
     extends Shared
 {
     /**

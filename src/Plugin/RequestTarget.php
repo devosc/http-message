@@ -11,7 +11,7 @@ use Mvc5\Plugin\Shared;
 
 use const Mvc5\{ PATH, QUERY, URI };
 
-class RequestTarget
+final class RequestTarget
     extends Shared
 {
     /**

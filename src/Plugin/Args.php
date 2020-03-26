@@ -8,7 +8,7 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\GlobalVar;
 use Mvc5\Plugin\Shared;
 
-class Args
+final class Args
     extends Shared
 {
     /**

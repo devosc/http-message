@@ -10,7 +10,7 @@ use Mvc5\Plugin\Shared;
 
 use const Mvc5\SERVER;
 
-class ClientAddress
+final class ClientAddress
     extends Shared
 {
     /**

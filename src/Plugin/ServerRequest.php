@@ -8,7 +8,7 @@ namespace Valar\Plugin;
 use Mvc5\Plugin\Scope;
 use Valar\ServerRequest as Request;
 
-class ServerRequest
+final class ServerRequest
     extends Scope
 {
     /**
