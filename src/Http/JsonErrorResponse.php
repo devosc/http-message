@@ -7,7 +7,7 @@ namespace Valar\Http;
 
 use Mvc5\Http\Error;
 
-class JsonErrorResponse
+final class JsonErrorResponse
     extends JsonResponse
 {
     /**
